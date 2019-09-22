@@ -1,0 +1,26 @@
+{
+  "name": "dige-recruitment-exercise",
+  "version": "1.0.0",
+  "description": "junior front-end developer recruitment exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skwirowski/DIGE-recruitment-exercise.git"
+  },
+  "author": "Paweł Skwirowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skwirowski/DIGE-recruitment-exercise/issues"
+  },
+  "homepage": "https://github.com/skwirowski/DIGE-recruitment-exercise#readme",
+  "devDependencies": {
+    "eslint": "^6.4.0"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1"
+  }
+}

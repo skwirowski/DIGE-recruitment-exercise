@@ -1,12 +1,12 @@
 import { getCurrentDate } from './helperFunctions';
 
-export default function showUserDataFrom() {
+export default function showUserDataForm() {
   const addUserDataFormRegion = document.querySelector(
     '#user-data-form-region'
   );
 
   const userDataFormTemplate = /* html */ `
-    <form class="user-data-form">
+    <form id="user-form" class="user-data-form">
       <div class="user-data-form__name">
         <label for="user-name-input">Your name</label>
         <input
@@ -65,7 +65,7 @@ export default function showUserDataFrom() {
         <small id="user-phone-help">Valid phone number consists of 9 digits. Example: 601647108</small>
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" id="user-data-submit-button">Submit</button>
     </form>
   `;
   addUserDataFormRegion.innerHTML = userDataFormTemplate;

@@ -1,11 +1,18 @@
-import stringToDisplay from './data';
-import showUserDataFrom from './CreateUserDataForm';
+import showUserDataForm from './CreateUserDataForm';
 
-function getData() {
-  console.log('Does webpack work or not?');
-  console.log(stringToDisplay);
+showUserDataForm();
+
+function getUserDataFormInputValues(event) {
+  event.preventDefault();
+
+  const userForm = document.querySelector('#user-form');
+  const formElementsCollection = userForm.elements;
+  const htmlCollectionLength = formElementsCollection.length;
+
+  for (let i = 0; i < htmlCollectionLength - 1; i += 1) {
+    console.log(formElementsCollection[i].value);
+  }
 }
 
-showUserDataFrom();
-
-getData();
+const submitButton = document.querySelector('#user-data-submit-button');
+submitButton.addEventListener('click', getUserDataFormInputValues);

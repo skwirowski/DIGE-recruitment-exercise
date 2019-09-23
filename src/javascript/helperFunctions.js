@@ -12,22 +12,21 @@ export function getCurrentDate() {
   return today;
 }
 
+/** @param year Integer value representing the year, eg. 2010 */
 /** @param month Integer value representing the month, beginning with 0 for January to 11 for December */
 /**  returned value is day of the week, where 0 represents Sunday, 1 Monday, 2 Wednesday ect. */
-export function getFirstDayOfMonth(month) {
+export function getFirstDayOfMonth(year, month) {
+  const yearToNumber = Number(year);
   const monthToNumber = Number(month);
-  const today = new Date();
-  const year = today.getFullYear();
-  const firstDayOfMonth = new Date(year, monthToNumber).getDay();
+  const firstDayOfMonth = new Date(yearToNumber, monthToNumber).getDay();
 
   return firstDayOfMonth;
 }
 
-export function getDaysInMonth(month) {
+export function getDaysInMonth(year, month) {
+  const yearToNumber = Number(year);
   const monthToNumber = Number(month);
-  const today = new Date();
-  const year = today.getFullYear();
-  const daysInMonth = 32 - new Date(year, monthToNumber, 32).getDate();
+  const daysInMonth = 32 - new Date(yearToNumber, monthToNumber, 32).getDate();
 
   return daysInMonth;
 }

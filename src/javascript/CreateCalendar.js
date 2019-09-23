@@ -1,7 +1,89 @@
 import {
+  clearRegions,
   getFirstDayOfMonth,
-  getDaysInMonth,
-  clearRegions
+  getDaysInMonth
 } from './helperFunctions';
+import { monthsNames } from './static/data';
 
+export default function showCalendar(
+  year = new Date().getFullYear(),
+  month = new Date().getMonth()
+) {
+  const firstDayOfMonth = getFirstDayOfMonth(year, month);
+  const daysInMonth = getDaysInMonth(year, month);
+  const addCalendar = document.querySelector('#calendar-region');
 
+  clearRegions();
+
+  const calendarTemplate = /* html */ `
+    <h3 id="calendar-month-year"></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody id="calendar-body">
+      </tbody>
+    </table>
+
+    <button id="calendar-previous-month-button"><< Previous</button>
+    <button id="calendar-next-month-button">Next >></button>
+  `;
+
+  addCalendar.innerHTML = calendarTemplate;
+
+  const calendarMonthAndYear = document.querySelector('#calendar-month-year');
+  const calendarMonthAndYearTemplate = `${monthsNames[Number(month)]} ${year}`;
+  calendarMonthAndYear.innerHTML = calendarMonthAndYearTemplate;
+
+  const calendarBody = document.querySelector('#calendar-body');
+  let date = 1;
+
+  for (let i = 0; i < 6; i += 1) {
+    const row = document.createElement('tr');
+
+    for (let j = 0; j < 7; j += 1) {
+      if (i === 0 && j < firstDayOfMonth) {
+        const cell = document.createElement('td');
+        const cellText = document.createTextNode('');
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+      } else if (date > daysInMonth) {
+        break;
+      } else {
+        const cell = document.createElement('td');
+        const cellText = document.createTextNode(date);
+        cell.appendChild(cellText);
+        row.appendChild(cell);
+
+        date += 1;
+      }
+    }
+    calendarBody.appendChild(row);
+  }
+
+  const previousMonthButton = document.querySelector(
+    '#calendar-previous-month-button'
+  );
+  const nextMonthButton = document.querySelector('#calendar-next-month-button');
+
+  previousMonthButton.addEventListener('click', () => {
+    const currentYear = month === 0 ? year - 1 : year;
+    const currentMonth = month === 0 ? 11 : month - 1;
+
+    showCalendar(currentYear, currentMonth);
+  });
+  nextMonthButton.addEventListener('click', () => {
+    const currentYear = month === 11 ? year + 1 : year;
+    const currentMonth = (month + 1) % 12;
+
+    showCalendar(currentYear, currentMonth);
+  });
+}

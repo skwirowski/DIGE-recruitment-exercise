@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/CreateUserDataForm.js":
+/*!***********************************!*\
+  !*** ./src/CreateUserDataForm.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return showUserDataFrom; });\nfunction showUserDataFrom() {\n  var addUserDataFormRegion = document.querySelector('#user-data-form-region');\n  var userDataFormTemplate = \"\\n    <div class=\\\"div-class-name\\\">\\n      <p class=\\\"paragraph-class-name\\\">This is template HTML to check if all is good</p>\\n    </div>\\n  \";\n  var htmlElement = document.createElement('div');\n  htmlElement.innerHTML = userDataFormTemplate;\n  addUserDataFormRegion.appendChild(htmlElement);\n}\n\n//# sourceURL=webpack:///./src/CreateUserDataForm.js?");
+
+/***/ }),
+
 /***/ "./src/data.js":
 /*!*********************!*\
   !*** ./src/data.js ***!
@@ -106,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nvar stringToDisplay = 'This i
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./src/data.js\");\n\n\nfunction getData() {\n  console.log('Does webpack work or not?');\n  console.log(_data__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n  var getElements = function getElements() {\n    var arr = ['one', 'two'];\n    var array = ['three', 'four'];\n    return [].concat(arr, array);\n  };\n\n  console.log(getElements());\n}\n\ngetData();\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./src/data.js\");\n/* harmony import */ var _CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateUserDataForm */ \"./src/CreateUserDataForm.js\");\n\n\n\nfunction getData() {\n  console.log('Does webpack work or not?');\n  console.log(_data__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n}\n\nObject(_CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\ngetData();\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

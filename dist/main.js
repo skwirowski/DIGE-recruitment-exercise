@@ -81,44 +81,56 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/javascript/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/CreateUserDataForm.js":
-/*!***********************************!*\
-  !*** ./src/CreateUserDataForm.js ***!
-  \***********************************/
+/***/ "./src/javascript/CreateUserDataForm.js":
+/*!**********************************************!*\
+  !*** ./src/javascript/CreateUserDataForm.js ***!
+  \**********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return showUserDataFrom; });\nfunction showUserDataFrom() {\n  var addUserDataFormRegion = document.querySelector('#user-data-form-region');\n  var userDataFormTemplate = \"\\n    <div class=\\\"div-class-name\\\">\\n      <p class=\\\"paragraph-class-name\\\">This is template HTML to check if all is good</p>\\n    </div>\\n  \";\n  var htmlElement = document.createElement('div');\n  htmlElement.innerHTML = userDataFormTemplate;\n  addUserDataFormRegion.appendChild(htmlElement);\n}\n\n//# sourceURL=webpack:///./src/CreateUserDataForm.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return showUserDataFrom; });\n/* harmony import */ var _helperFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helperFunctions */ \"./src/javascript/helperFunctions.js\");\n\nfunction showUserDataFrom() {\n  var addUserDataFormRegion = document.querySelector('#user-data-form-region');\n  var userDataFormTemplate =\n  /* html */\n  \"\\n    <form class=\\\"user-data-form\\\">\\n      <div class=\\\"user-data-form__name\\\">\\n        <label for=\\\"user-name-input\\\">Your name</label>\\n        <input\\n          type=\\\"text\\\"\\n          id=\\\"user-name-input\\\"\\n          placeholder=\\\"Your name\\\"\\n          required\\n          pattern=\\\"[A-Z\\u0104\\u0106\\u0118\\u0141\\u0143\\xD3\\u015A\\u0179\\u017Ba-z\\u0105\\u0107\\u0119\\u0142\\u0144\\xF3\\u015B\\u017A\\u017C]{1,}\\\"\\n          title=\\\"Name can contain only letters\\\"\\n          aria-describedby=\\\"user-name-help\\\"\\n        />\\n        <small id=\\\"user-name-help\\\">Name can contain only letters</small>\\n      </div>\\n\\n      <div class=\\\"user-data-form__picture\\\">\\n        <label for=\\\"user-picture-input\\\">Upload your picture</label>\\n        <input\\n          type=\\\"file\\\"\\n          id=\\\"user-picture-input\\\"\\n          required\\n        />\\n      </div>\\n\\n      <div class=\\\"user-data-form__birthdate\\\">\\n        <label for=\\\"user-birthdate-input\\\">Your date of birth</label>\\n        <input\\n          type=\\\"date\\\"\\n          id=\\\"user-birthdate-input\\\"\\n          name=\\\"user-birthday-date\\\"\\n          max=\".concat(Object(_helperFunctions__WEBPACK_IMPORTED_MODULE_0__[\"getCurrentDate\"])(), \"\\n          required\\n        />\\n      </div>\\n\\n      <div class=\\\"user-data-form__email\\\">\\n        <label for=\\\"user-email-input\\\">Your e-mail address</label>\\n        <input\\n          type=\\\"email\\\"\\n          id=\\\"user-email-input\\\"\\n          required\\n          aria-describedby=\\\"user-email-help\\\"\\n        />\\n        <small id=\\\"user-email-help\\\">Example of valid e-mail address: pskwirowski@gmail.com</small>\\n      </div>\\n\\n      <div class=\\\"user-data-form__phone\\\">\\n        <label for=\\\"user-phone-input\\\">Your phone number</label>\\n        <input\\n          type=\\\"text\\\"\\n          id=\\\"user-phone-input\\\"\\n          required\\n          pattern=\\\"[0-9]{9}\\\"\\n          title=\\\"Valid phone number consists of 9 digits\\\"\\n          aria-describedby=\\\"user-phone-help\\\"\\n        />\\n        <small id=\\\"user-phone-help\\\">Valid phone number consists of 9 digits. Example: 601647108</small>\\n      </div>\\n\\n      <button type=\\\"submit\\\">Submit</button>\\n    </form>\\n  \");\n  addUserDataFormRegion.innerHTML = userDataFormTemplate;\n}\n\n//# sourceURL=webpack:///./src/javascript/CreateUserDataForm.js?");
 
 /***/ }),
 
-/***/ "./src/data.js":
-/*!*********************!*\
-  !*** ./src/data.js ***!
-  \*********************/
+/***/ "./src/javascript/data.js":
+/*!********************************!*\
+  !*** ./src/javascript/data.js ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar stringToDisplay = 'This is exported message. And a whole new sentence';\n/* harmony default export */ __webpack_exports__[\"default\"] = (stringToDisplay);\n\n//# sourceURL=webpack:///./src/data.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nvar stringToDisplay = 'This is exported message. And a whole new sentence';\n/* harmony default export */ __webpack_exports__[\"default\"] = (stringToDisplay);\n\n//# sourceURL=webpack:///./src/javascript/data.js?");
 
 /***/ }),
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/***/ "./src/javascript/helperFunctions.js":
+/*!*******************************************!*\
+  !*** ./src/javascript/helperFunctions.js ***!
+  \*******************************************/
+/*! exports provided: getCurrentDate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getCurrentDate\", function() { return getCurrentDate; });\nfunction getCurrentDate() {\n  var today = new Date();\n  var dd = today.getDate();\n  var mm = today.getMonth() + 1;\n  var yyyy = today.getFullYear();\n  if (dd < 10) dd = \"0\".concat(dd);\n  if (mm < 10) mm = \"0\".concat(mm);\n  today = \"\".concat(yyyy, \"-\").concat(mm, \"-\").concat(dd);\n  return today;\n}\n\n//# sourceURL=webpack:///./src/javascript/helperFunctions.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/index.js":
+/*!*********************************!*\
+  !*** ./src/javascript/index.js ***!
+  \*********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./src/data.js\");\n/* harmony import */ var _CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateUserDataForm */ \"./src/CreateUserDataForm.js\");\n\n\n\nfunction getData() {\n  console.log('Does webpack work or not?');\n  console.log(_data__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n}\n\nObject(_CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\ngetData();\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ \"./src/javascript/data.js\");\n/* harmony import */ var _CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateUserDataForm */ \"./src/javascript/CreateUserDataForm.js\");\n\n\n\nfunction getData() {\n  console.log('Does webpack work or not?');\n  console.log(_data__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n}\n\nObject(_CreateUserDataForm__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\ngetData();\n\n//# sourceURL=webpack:///./src/javascript/index.js?");
 
 /***/ })
 

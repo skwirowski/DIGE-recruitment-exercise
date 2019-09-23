@@ -1,0 +1,13 @@
+.user-data-form {
+  display: flex;
+  flex-direction: column;
+}
+.user-data-form__name,
+.user-data-form__picture,
+.user-data-form__birthdate,
+.user-data-form__email,
+.user-data-form__phone {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}

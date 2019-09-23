@@ -17,6 +17,7 @@ export default function showUserDataForm() {
           pattern="[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż]{1,}"
           title="Name can contain only letters"
           aria-describedby="user-name-help"
+          value="Paweł"
         />
         <small id="user-name-help">Name can contain only letters</small>
       </div>
@@ -26,7 +27,7 @@ export default function showUserDataForm() {
         <input
           type="file"
           id="user-picture-input"
-          required
+
         />
       </div>
 
@@ -38,6 +39,7 @@ export default function showUserDataForm() {
           name="user-birthday-date"
           max=${getCurrentDate()}
           required
+          value="2018-01-14"
         />
       </div>
 
@@ -48,6 +50,7 @@ export default function showUserDataForm() {
           id="user-email-input"
           required
           aria-describedby="user-email-help"
+          value="pskwirowski@gmail.com"
         />
         <small id="user-email-help">Example of valid e-mail address: pskwirowski@gmail.com</small>
       </div>
@@ -61,12 +64,14 @@ export default function showUserDataForm() {
           pattern="[0-9]{9}"
           title="Valid phone number consists of 9 digits"
           aria-describedby="user-phone-help"
+          value="601647108"
         />
         <small id="user-phone-help">Valid phone number consists of 9 digits. Example: 601647108</small>
       </div>
 
-      <button type="submit" id="user-data-submit-button">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   `;
+
   addUserDataFormRegion.innerHTML = userDataFormTemplate;
 }

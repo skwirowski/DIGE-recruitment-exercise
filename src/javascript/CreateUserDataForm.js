@@ -1,31 +1,9 @@
-import showCalendar from './CreateCalendar';
 import { getCurrentDate, clearRegions } from './helperFunctions';
-import {
-  createUserData,
-  addUser,
-  usersDataStore,
-  loadFromLocalStorage
-} from './store';
-
-const today = new Date();
-const currentYear = today.getFullYear();
-const birthdayMonth = '8';
-
-function getUserDataFormInputValues(event) {
-  event.preventDefault();
-
-  const userForm = document.querySelector('#user-form');
-  const userData = createUserData(userForm);
-  addUser(userData);
-  showCalendar(currentYear, birthdayMonth);
-  console.log(usersDataStore);
-}
 
 export default function showUserDataForm() {
   const addUserDataFormRegion = document.querySelector(
     '#user-data-form-region'
   );
-    console.log('triggered')
   clearRegions();
 
   const userDataFormTemplate = /* html */ `
@@ -101,7 +79,4 @@ export default function showUserDataForm() {
   `;
 
   addUserDataFormRegion.innerHTML = userDataFormTemplate;
-
-  const userDataForm = document.querySelector('#user-form');
-  userDataForm.addEventListener('submit', getUserDataFormInputValues);
 }

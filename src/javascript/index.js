@@ -7,33 +7,38 @@ import {
   loadFromLocalStorage
 } from './store';
 
-loadFromLocalStorage();
-showUserDataForm();
-console.log('first console', usersDataStore);
-
-const today = new Date();
-const currentYear = today.getFullYear();
-const birthdayMonth = '8';
-
-function getUserDataFormInputValues(event) {
-  event.preventDefault();
-
+function getUserDataFormInputValues() {
   const userForm = document.querySelector('#user-form');
-  const userData = createUserData(userForm);
-  addUser(userData);
-
-  // const formElementsCollection = userForm.elements;
-  // const HTMLcollectionLength = formElementsCollection.length;
-
-  // for (let i = 0; i < HTMLcollectionLength - 1; i += 1) {
-  //   console.log(formElementsCollection[i].value);
-  // }
-  showCalendar(currentYear, birthdayMonth);
-  console.log(usersDataStore);
+  return createUserData(userForm);
 }
 
-// const userDataForm = document.querySelector('#user-form');
-const showUserDataFormButton = document.querySelector('#show-user-data-form');
+function getBirthdayMonthInteger(birthDate) {
+  const birthDateMonth = birthDate.slice(5, 7);
+  return birthDateMonth - 1;
+}
 
-// userDataForm.addEventListener('submit', getUserDataFormInputValues);
-showUserDataFormButton.addEventListener('click', showUserDataForm);
+function initializeUserDataForm() {
+  loadFromLocalStorage();
+  showUserDataForm();
+
+  function prepareSubmitData(event) {
+    event.preventDefault();
+
+    const userData = getUserDataFormInputValues();
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const birthdayMonth = getBirthdayMonthInteger(userData.birthdate);
+
+    addUser(userData);
+    showCalendar(currentYear, birthdayMonth);
+    console.log(usersDataStore);
+  }
+
+  const userDataForm = document.querySelector('#user-form');
+  const showUserDataFormButton = document.querySelector('#show-user-data-form');
+
+  userDataForm.addEventListener('submit', prepareSubmitData);
+  showUserDataFormButton.addEventListener('click', initializeUserDataForm);
+}
+
+initializeUserDataForm();

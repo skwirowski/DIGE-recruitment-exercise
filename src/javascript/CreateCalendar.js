@@ -1,4 +1,3 @@
-import showUserDataForm from './CreateUserDataForm';
 import {
   clearRegions,
   getFirstDayOfMonth,
@@ -17,7 +16,11 @@ export default function showCalendar(
   clearRegions();
 
   const calendarTemplate = /* html */ `
-    <h3 id="calendar-month-year"></h3>
+    <div class="calendar__controls-wrapper">
+      <button id="calendar-previous-month-button"><< Previous</button>
+      <h3 id="calendar-month-year"></h3>
+      <button id="calendar-next-month-button">Next >></button>
+    </div>
     <table>
       <thead>
         <tr>
@@ -33,9 +36,6 @@ export default function showCalendar(
       <tbody id="calendar-body">
       </tbody>
     </table>
-
-    <button id="calendar-previous-month-button"><< Previous</button>
-    <button id="calendar-next-month-button">Next >></button>
   `;
 
   addCalendar.innerHTML = calendarTemplate;

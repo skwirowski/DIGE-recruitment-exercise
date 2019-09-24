@@ -1,17 +1,19 @@
 1. Form fields:
-	1.1 name
+	V 1.1 name
 	1.2 photo
-	1.3 birth date
-	1.4 email
-	1.5 phone number
-	1.6 submit button
-2. Form fields shoud be validated for data format
+	V 1.3 birth date
+	V 1.4 email
+	V 1.5 phone number
+	V 1.6 submit button
+	V 1.7 extra button show form
+	V 1.8 extra button show calendar
+V 2. Form fields shoud be validated for data format
 3. All fields are mandatory
 =====================================================
 4. Main page:
-	4.1 single month view calendar
+	V 4.1 single month view calendar
 	4.2 indicate user's birthday
-	4.3 calendar view should allow to navigate
+	V 4.3 calendar view should allow to navigate
 	    months back/forward
 	4.4 day containing birthday should be
 	    clickable - display full screen modal

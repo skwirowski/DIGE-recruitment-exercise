@@ -1,9 +1,32 @@
-import { getCurrentDate } from './helperFunctions';
+import showCalendar from './CreateCalendar';
+import { getCurrentDate, clearRegions } from './helperFunctions';
+import {
+  createUserData,
+  addUser,
+  usersDataStore,
+  loadFromLocalStorage
+} from './store';
+
+const today = new Date();
+const currentYear = today.getFullYear();
+const birthdayMonth = '8';
+
+function getUserDataFormInputValues(event) {
+  event.preventDefault();
+
+  const userForm = document.querySelector('#user-form');
+  const userData = createUserData(userForm);
+  addUser(userData);
+  showCalendar(currentYear, birthdayMonth);
+  console.log(usersDataStore);
+}
 
 export default function showUserDataForm() {
   const addUserDataFormRegion = document.querySelector(
     '#user-data-form-region'
   );
+    console.log('triggered')
+  clearRegions();
 
   const userDataFormTemplate = /* html */ `
     <form id="user-form" class="user-data-form">
@@ -12,6 +35,7 @@ export default function showUserDataForm() {
         <input
           type="text"
           id="user-name-input"
+          name="name"
           placeholder="Your name"
           required
           pattern="[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż]{1,}"
@@ -27,6 +51,7 @@ export default function showUserDataForm() {
         <input
           type="file"
           id="user-picture-input"
+          name="picture"
 
         />
       </div>
@@ -36,7 +61,7 @@ export default function showUserDataForm() {
         <input
           type="date"
           id="user-birthdate-input"
-          name="user-birthday-date"
+          name="birthdate"
           max=${getCurrentDate()}
           required
           value="2018-01-14"
@@ -48,6 +73,7 @@ export default function showUserDataForm() {
         <input
           type="email"
           id="user-email-input"
+          name="email"
           required
           aria-describedby="user-email-help"
           value="pskwirowski@gmail.com"
@@ -60,6 +86,7 @@ export default function showUserDataForm() {
         <input
           type="text"
           id="user-phone-input"
+          name="phone"
           required
           pattern="[0-9]{9}"
           title="Valid phone number consists of 9 digits"
@@ -74,4 +101,7 @@ export default function showUserDataForm() {
   `;
 
   addUserDataFormRegion.innerHTML = userDataFormTemplate;
+
+  const userDataForm = document.querySelector('#user-form');
+  userDataForm.addEventListener('submit', getUserDataFormInputValues);
 }

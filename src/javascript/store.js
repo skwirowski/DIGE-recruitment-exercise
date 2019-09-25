@@ -3,7 +3,7 @@ export let usersDataStore = [];
 export function createUserData(userForm) {
   return {
     name: userForm.name.value,
-    picture: userForm.picture.value,
+    // picture: userForm.picture.value,
     birthdate: userForm.birthdate.value,
     email: userForm.email.value,
     phone: userForm.phone.value

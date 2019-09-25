@@ -21,7 +21,7 @@ export default function showUserDataForm() {
           aria-describedby="user-name-help"
           value="Paweł"
         />
-        <small id="user-name-help">Name can contain only letters</small>
+        <small id="user-name-help">Name can be one word and contain only letters</small>
       </div>
 
       <div class="user-data-form__picture">
@@ -30,6 +30,7 @@ export default function showUserDataForm() {
           type="file"
           id="user-picture-input"
           name="picture"
+          accept="image/*"
 
         />
       </div>

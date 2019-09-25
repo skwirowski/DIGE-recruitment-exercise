@@ -31,6 +31,11 @@ export function getDaysInMonth(year, month) {
   return daysInMonth;
 }
 
+export function getBirthdayMonthInteger(fullBirthDate) {
+  const birthDateMonth = fullBirthDate.slice(5, 7);
+  return birthDateMonth - 1;
+}
+
 export function clearRegions() {
   const regions = ['user-data-form-region', 'calendar-region'];
 
@@ -38,4 +43,42 @@ export function clearRegions() {
     const DOMelement = document.getElementById(region);
     DOMelement.innerHTML = '';
   });
+}
+
+/** @param file Selected file using DOM selector */
+/** eg. document.querySelector('#user-picture-input').files[0]; */
+export function readInputPictureFileBase64(file, resultStore) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  }).then(result => {
+    const encodedPicture = result;
+    return encodedPicture;
+  });
+
+  // const resolvedPromiseValue = Promise.resolve(imageLoadPromise);
+  // resolvedPromiseValue.then(value => {
+  //   return value;
+  // });
+
+  // return resolvedPromiseValue.resolve();
+}
+
+export function readFile(file) {
+  let imageSource = '';
+  const reader = new FileReader();
+
+  reader.addEventListener('load', () => {
+    imageSource = reader.result;
+  });
+
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+  console.log('function response', imageSource);
+  return imageSource;
 }

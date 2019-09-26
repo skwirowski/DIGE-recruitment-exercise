@@ -1,28 +1,16 @@
 import showUserDataForm from './CreateUserDataForm';
 import showCalendar from './CreateCalendar';
+import showUserBirthdayCard from './CreateBirthdayCard';
 import {
   prepareUserTextData,
+  createCalendarInitialData,
   addUser,
   usersDataStore,
   loadFromLocalStorage
 } from './store';
-import {
-  getBirthdayMonthInteger,
-  readInputPictureFileBase64
-} from './helperFunctions';
+import { readInputPictureFileBase64 } from './helperFunctions';
 
 loadFromLocalStorage();
-
-function createCalendarInitialData(dataForm) {
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const birthdayMonth = getBirthdayMonthInteger(dataForm);
-
-  return {
-    currentYear,
-    birthdayMonth
-  };
-}
 
 function initializeUserDataForm() {
   showUserDataForm();
@@ -44,6 +32,7 @@ function initializeUserDataForm() {
       completeUserData.birthdate
     );
     showCalendar(currentYear, birthdayMonth);
+    showUserBirthdayCard(usersDataStore);
 
     console.log('user data store', usersDataStore);
   }
@@ -51,10 +40,13 @@ function initializeUserDataForm() {
   userDataForm.addEventListener('submit', prepareSubmitData);
   showUserDataFormButton.addEventListener('click', initializeUserDataForm);
   userPictureInput.addEventListener('change', () => {
-    readInputPictureFileBase64(userPictureInput.files[0]).then(value => {
-      completeUserData = { picture: value };
-      console.log('complete user data', completeUserData);
-    });
+    const file = userPictureInput.files[0];
+    if (file) {
+      readInputPictureFileBase64(file).then(value => {
+        completeUserData = { picture: value };
+        console.log('complete user data', completeUserData);
+      });
+    }
   });
 }
 initializeUserDataForm();

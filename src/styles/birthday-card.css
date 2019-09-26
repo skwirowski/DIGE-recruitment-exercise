@@ -1,0 +1,24 @@
+.birthday-card {
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+}
+.birthday-card__photo {
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.birthday-card__user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  margin-left: 10px;
+}
+.birthday-card__user-info h2,
+.birthday-card__user-info h3,
+.birthday-card__user-info p {
+  margin: 0;
+}

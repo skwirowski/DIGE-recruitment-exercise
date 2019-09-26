@@ -3,7 +3,7 @@ import {
   getFirstDayOfMonth,
   getDaysInMonth
 } from './helperFunctions';
-import { monthsNames } from './static/data';
+import monthsNames from './static/monthsNames';
 
 export default function showCalendar(
   year = new Date().getFullYear(),

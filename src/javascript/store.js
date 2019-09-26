@@ -6,9 +6,8 @@ import {
 export let usersDataStore = [];
 
 export function prepareUserTextData(userForm) {
-  const birthdateMonth = getBirthdayMonthInteger(userForm);
-  const birthdateDay = getBirthdayDayInteger(userForm);
-// dodać datę urodzin dzień i miesiąc do danych użytkownika
+  const birthdateMonth = getBirthdayMonthInteger(userForm.birthdate.value);
+  const birthdateDay = getBirthdayDayInteger(userForm.birthdate.value);
   return {
     name: userForm.name.value,
     birthdate: userForm.birthdate.value,
@@ -16,6 +15,17 @@ export function prepareUserTextData(userForm) {
     birthdateMonth,
     email: userForm.email.value,
     phone: userForm.phone.value
+  };
+}
+
+export function createCalendarInitialData(fullBirthDate) {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const birthdayMonth = getBirthdayMonthInteger(fullBirthDate);
+
+  return {
+    currentYear,
+    birthdayMonth
   };
 }
 

@@ -38,7 +38,7 @@ export function getBirthdayMonthInteger(fullBirthDate) {
 }
 
 export function getBirthdayDayInteger(fullBirthDate) {
-  const birthDateDay = fullBirthDate.slice(-2, -1);
+  const birthDateDay = fullBirthDate.slice(-2);
   return Number(birthDateDay);
 }
 

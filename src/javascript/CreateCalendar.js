@@ -1,3 +1,5 @@
+import showUserBirthdayCard from './CreateBirthdayCard';
+import { usersDataStore } from './store';
 import {
   clearRegions,
   getFirstDayOfMonth,
@@ -7,7 +9,8 @@ import monthsNames from './static/monthsNames';
 
 export default function showCalendar(
   year = new Date().getFullYear(),
-  month = new Date().getMonth()
+  month = new Date().getMonth(),
+  day
 ) {
   const firstDayOfMonth = getFirstDayOfMonth(year, month);
   const daysInMonth = getDaysInMonth(year, month);
@@ -61,6 +64,10 @@ export default function showCalendar(
       } else {
         const cell = document.createElement('td');
         const cellText = document.createTextNode(date);
+
+        if (date === day) {
+          cell.classList.add('color');
+        }
         cell.appendChild(cellText);
         row.appendChild(cell);
 
@@ -68,6 +75,7 @@ export default function showCalendar(
       }
     }
     calendarBody.appendChild(row);
+    showUserBirthdayCard(usersDataStore);
   }
 
   const previousMonthButton = document.querySelector(
@@ -80,11 +88,13 @@ export default function showCalendar(
     const currentMonth = month === 0 ? 11 : month - 1;
 
     showCalendar(currentYear, currentMonth);
+    showUserBirthdayCard(usersDataStore);
   });
   nextMonthButton.addEventListener('click', () => {
     const currentYear = month === 11 ? year + 1 : year;
     const currentMonth = (month + 1) % 12;
 
     showCalendar(currentYear, currentMonth);
+    showUserBirthdayCard(usersDataStore);
   });
 }

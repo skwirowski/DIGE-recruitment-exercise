@@ -31,8 +31,7 @@ function initializeUserDataForm() {
     const { currentYear, birthdayMonth } = createCalendarInitialData(
       completeUserData.birthdate
     );
-    showCalendar(currentYear, birthdayMonth);
-    showUserBirthdayCard(usersDataStore);
+    showCalendar(currentYear, birthdayMonth, completeUserData.birthdateDay);
 
     console.log('user data store', usersDataStore);
   }

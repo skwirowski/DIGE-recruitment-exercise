@@ -30,7 +30,7 @@ V 2. Form fields shoud be validated for data format
 	- name
 	- email
 	- phone
-7. List elements shoud have edit and delete functionalities
+7. List elements should have edit and delete functionalities
 
 General rules:
 - everything should be responsive

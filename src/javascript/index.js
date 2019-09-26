@@ -1,61 +1,59 @@
 import showUserDataForm from './CreateUserDataForm';
 import showCalendar from './CreateCalendar';
 import {
-  createUserData,
+  prepareUserTextData,
   addUser,
   usersDataStore,
   loadFromLocalStorage
 } from './store';
 import {
   getBirthdayMonthInteger,
-  readInputPictureFileBase64,
-  readFile
+  readInputPictureFileBase64
 } from './helperFunctions';
 
 loadFromLocalStorage();
 
-let userDataObj = {};
+function createCalendarInitialData(dataForm) {
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const birthdayMonth = getBirthdayMonthInteger(dataForm);
 
-function getUserDataFormInputValues() {
-  const userForm = document.querySelector('#user-form');
-  // const fileInput = document.querySelector('#user-picture-input');
-  // const file = fileInput.files[0];
-
-  // readInputImageFileBase64(file).then(response =>
-  //   console.log('promise response', response)
-  // );
-  const data = createUserData(userForm);
-  userDataObj = { ...userDataObj, ...data };
-  console.log(userDataObj);
+  return {
+    currentYear,
+    birthdayMonth
+  };
 }
 
 function initializeUserDataForm() {
   showUserDataForm();
-  // const imageFile = document.querySelector('#user-picture-input').files[0];
+
+  let completeUserData = {};
+
+  const userDataForm = document.querySelector('#user-form');
+  const showUserDataFormButton = document.querySelector('#show-user-data-form');
+  const userPictureInput = document.querySelector('#user-picture-input');
 
   function prepareSubmitData(event) {
     event.preventDefault();
 
-    getUserDataFormInputValues();
-    const today = new Date();
-    const currentYear = today.getFullYear();
-    const birthdayMonth = getBirthdayMonthInteger(userDataObj.birthdate);
+    const textUserData = prepareUserTextData(userDataForm);
+    completeUserData = { ...completeUserData, ...textUserData };
+    addUser(completeUserData);
 
-    addUser(userDataObj);
+    const { currentYear, birthdayMonth } = createCalendarInitialData(
+      completeUserData.birthdate
+    );
     showCalendar(currentYear, birthdayMonth);
-    console.log(usersDataStore);
-  }
 
-  const userDataForm = document.querySelector('#user-form');
-  const showUserDataFormButton = document.querySelector('#show-user-data-form');
-  const imageInput = document.querySelector('#user-picture-input');
+    console.log('user data store', usersDataStore);
+  }
 
   userDataForm.addEventListener('submit', prepareSubmitData);
   showUserDataFormButton.addEventListener('click', initializeUserDataForm);
-  imageInput.addEventListener('change', () => {
-    readInputPictureFileBase64(imageInput.files[0]).then(value => {
-      userDataObj = { ...userDataObj, url: value };
-      console.log(userDataObj);
+  userPictureInput.addEventListener('change', () => {
+    readInputPictureFileBase64(userPictureInput.files[0]).then(value => {
+      completeUserData = { picture: value };
+      console.log('complete user data', completeUserData);
     });
   });
 }

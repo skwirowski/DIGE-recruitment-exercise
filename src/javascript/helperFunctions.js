@@ -36,6 +36,11 @@ export function getBirthdayMonthInteger(fullBirthDate) {
   return birthDateMonth - 1;
 }
 
+export function getBirthdayDayInteger(fullBirthDate) {
+  const birthDateDay = fullBirthDate.slice(-2, -1);
+  return Number(birthDateDay);
+}
+
 export function clearRegions() {
   const regions = ['user-data-form-region', 'calendar-region'];
 
@@ -59,26 +64,4 @@ export function readInputPictureFileBase64(file, resultStore) {
     const encodedPicture = result;
     return encodedPicture;
   });
-
-  // const resolvedPromiseValue = Promise.resolve(imageLoadPromise);
-  // resolvedPromiseValue.then(value => {
-  //   return value;
-  // });
-
-  // return resolvedPromiseValue.resolve();
-}
-
-export function readFile(file) {
-  let imageSource = '';
-  const reader = new FileReader();
-
-  reader.addEventListener('load', () => {
-    imageSource = reader.result;
-  });
-
-  if (file) {
-    reader.readAsDataURL(file);
-  }
-  console.log('function response', imageSource);
-  return imageSource;
 }

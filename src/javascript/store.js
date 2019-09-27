@@ -9,6 +9,7 @@ export function prepareUserTextData(userForm) {
   const birthdateMonth = getBirthdayMonthInteger(userForm.birthdate.value);
   const birthdateDay = getBirthdayDayInteger(userForm.birthdate.value);
   return {
+    id: Date.now(),
     name: userForm.name.value,
     birthdate: userForm.birthdate.value,
     birthdateDay,
@@ -49,8 +50,14 @@ export function loadFromLocalStorage() {
   usersDataStore = parsedLocalStorageData.data;
 }
 
-export function addUser(userData) {
+export function addUserData(userData) {
   usersDataStore.push(userData);
+
+  saveToLocalStorage();
+}
+
+export function removeUserData(removedDataId) {
+  usersDataStore = usersDataStore.filter(item => item.id !== removedDataId);
 
   saveToLocalStorage();
 }

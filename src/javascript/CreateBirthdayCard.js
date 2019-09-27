@@ -4,7 +4,7 @@ export default function showUserBirthdayCard(birthdayData) {
   const createBirthdayCardTemplate = () =>
     birthdayData
       .map(card => {
-        const { picture, name, birthdate, email, phone } = card;
+        const { picture, id, name, birthdate, email, phone } = card;
 
         return /* html */ `
           <div class="birthday-card">
@@ -19,6 +19,13 @@ export default function showUserBirthdayCard(birthdayData) {
               <p>${email}</p>
               <p>${phone}</p>
             </div>
+            <button
+              class="birthday-card__remove-button"
+              type='button'
+              value=${id}
+            >
+              Remove
+            </button>
           </div>
         `;
       })

@@ -73,3 +73,18 @@ export function readInputPictureFileBase64(file) {
   }
   return null;
 }
+
+export function filterPropertiesFromObjectsArray(
+  arrayOfObjects,
+  objectKey,
+  comparisonValue
+) {
+  return arrayOfObjects.filter(item => item[objectKey] === comparisonValue);
+}
+
+export function collectObjectPropertiesInArray(arrayOfObjects, objectKey) {
+  const objectPropertiesArray = [];
+  arrayOfObjects.forEach(item => objectPropertiesArray.push(item[objectKey]));
+
+  return objectPropertiesArray;
+}

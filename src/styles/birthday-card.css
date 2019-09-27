@@ -22,3 +22,6 @@
 .birthday-card__user-info p {
   margin: 0;
 }
+.birthday-card__remove-button {
+  align-self: center;
+}

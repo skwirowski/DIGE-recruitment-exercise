@@ -1,10 +1,9 @@
 import showUserDataForm from './CreateUserDataForm';
 import showCalendar from './CreateCalendar';
-import showUserBirthdayCard from './CreateBirthdayCard';
 import {
   prepareUserTextData,
   createCalendarInitialData,
-  addUser,
+  addUserData,
   usersDataStore,
   loadFromLocalStorage
 } from './store';
@@ -26,7 +25,7 @@ function initializeUserDataForm() {
 
     const textUserData = prepareUserTextData(userDataForm);
     completeUserData = { ...completeUserData, ...textUserData };
-    addUser(completeUserData);
+    addUserData(completeUserData);
 
     const { currentYear, birthdayMonth } = createCalendarInitialData(
       completeUserData.birthdate

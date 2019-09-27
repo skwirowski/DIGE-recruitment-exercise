@@ -1,9 +1,11 @@
 import showUserBirthdayCard from './CreateBirthdayCard';
-import { usersDataStore } from './store';
+import { usersDataStore, removeUserData } from './store';
 import {
   clearRegions,
   getFirstDayOfMonth,
-  getDaysInMonth
+  getDaysInMonth,
+  filterPropertiesFromObjectsArray,
+  collectObjectPropertiesInArray
 } from './helperFunctions';
 import monthsNames from './static/monthsNames';
 
@@ -14,6 +16,15 @@ export default function showCalendar(
 ) {
   const firstDayOfMonth = getFirstDayOfMonth(year, month);
   const daysInMonth = getDaysInMonth(year, month);
+  const currentBirthdaysMonth = filterPropertiesFromObjectsArray(
+    usersDataStore,
+    'birthdateMonth',
+    month
+  );
+  const birthdaysCollection = collectObjectPropertiesInArray(
+    currentBirthdaysMonth,
+    'birthdateDay'
+  );
   const addCalendar = document.querySelector('#calendar-region');
 
   clearRegions();
@@ -65,8 +76,11 @@ export default function showCalendar(
         const cell = document.createElement('td');
         const cellText = document.createTextNode(date);
 
+        if (birthdaysCollection.some(item => item === date)) {
+          cell.classList.add('birthday-color');
+        }
         if (date === day) {
-          cell.classList.add('color');
+          cell.className = 'current-birthday-color';
         }
         cell.appendChild(cellText);
         row.appendChild(cell);
@@ -75,26 +89,34 @@ export default function showCalendar(
       }
     }
     calendarBody.appendChild(row);
-    showUserBirthdayCard(usersDataStore);
+    showUserBirthdayCard(currentBirthdaysMonth);
   }
 
   const previousMonthButton = document.querySelector(
     '#calendar-previous-month-button'
   );
   const nextMonthButton = document.querySelector('#calendar-next-month-button');
+  const removeBirthdayCardButton = document.querySelectorAll(
+    '.birthday-card__remove-button'
+  );
 
   previousMonthButton.addEventListener('click', () => {
     const currentYear = month === 0 ? year - 1 : year;
     const currentMonth = month === 0 ? 11 : month - 1;
 
     showCalendar(currentYear, currentMonth);
-    showUserBirthdayCard(usersDataStore);
   });
   nextMonthButton.addEventListener('click', () => {
     const currentYear = month === 11 ? year + 1 : year;
     const currentMonth = (month + 1) % 12;
 
     showCalendar(currentYear, currentMonth);
-    showUserBirthdayCard(usersDataStore);
+  });
+
+  removeBirthdayCardButton.forEach(item => {
+    item.addEventListener('click', () => {
+      removeUserData(Number(item.value));
+      showCalendar(year, month);
+    });
   });
 }

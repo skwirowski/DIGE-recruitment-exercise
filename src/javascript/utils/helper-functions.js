@@ -43,11 +43,7 @@ export function getBirthdayDayInteger(fullBirthDate) {
 }
 
 export function clearRegions() {
-  const regions = [
-    'user-data-form-region',
-    'calendar-region',
-    'birthday-cards-region'
-  ];
+  const regions = ['form-region', 'calendar-region', 'cards-region'];
 
   regions.forEach(region => {
     const DOMelement = document.getElementById(region);
@@ -74,11 +70,7 @@ export function readInputPictureFileBase64(file) {
   return null;
 }
 
-export function filterPropertiesFromObjectsArray(
-  arrayOfObjects,
-  objectKey,
-  comparisonValue
-) {
+export function filterPropertiesFromObjectsArray(arrayOfObjects, objectKey, comparisonValue) {
   return arrayOfObjects.filter(item => item[objectKey] === comparisonValue);
 }
 
@@ -87,4 +79,12 @@ export function collectObjectPropertiesInArray(arrayOfObjects, objectKey) {
   arrayOfObjects.forEach(item => objectPropertiesArray.push(item[objectKey]));
 
   return objectPropertiesArray;
+}
+
+export function findIndexOfPropertyInArray(arrayOfObjects, objectKey, comparisonValue) {
+  return arrayOfObjects.findIndex(item => item[objectKey] === comparisonValue);
+}
+
+export function removeIndexOfPropertyFromArray(arrayOfObjects, objectKey, comparisonValue) {
+  return arrayOfObjects.filter(item => item[objectKey] !== comparisonValue);
 }

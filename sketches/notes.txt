@@ -37,3 +37,58 @@ General rules:
 - everything should be styled
 - APOD API https://api.nasa.gov/api.html#apod
 - NASA API key LgBNly8TUsZnwDgRuGPY1gyVcYZMfgFPbjiTux0A
+
+NOTES:
+functions arguments names:
+- month, year -> numbers
+- fullBirthDate -> string YYYY-MM-DD
+- file -> DOM form element
+- arrayOfObjects, objectKey, comparisonValue
+- arrayOfDataObjects -> main array of objects containing user data [{ picture, id, name ...}, { ... }, { ... }]
+- formDataObject -> object of single user data from the form { picture, id, name ...}
+- callback  -> function as an argument of other function
+
+functions names:
+- showFormView
+- showCalendarView
+- showcardsView
+
+- createCalendarHeading
+- createCalendarBody
+
+- attachEventListeners
+- getCurrentDate
+- getFirstDayOfMonth
+- getDaysInMonth
+- getBirthdayMonthInteger
+- getBirthdayDayInteger
+- clearRegions
+- readInputPictureFileBase64
+- filterPropertiesFromObjectsArray
+- collectObjectPropertiesInArray
+- findIndexOfPropertyInArray
+
+- prepareFormDataExceptImageFile
+- prepareFormImageFileData
+
+- addFormImageFileToResultDataObject
+- addFormValuesToResultDataObject
+- addFormData
+- removeFromData
+- getBirthdayMonthObjects
+- collectBirthdays
+
+
+variables names:
+- calendarTemplate
+- formTemplate
+- formRegion
+- calendarRegion
+- cardsRegion
+- usersDataStore -> main array of objects containing user data [{ picture, id, name ...}, { ... }, { ... }]
+- userFormData -> object of single user data from the form { picture, id, name ...}
+- birthdateMonth -> integer representing month
+- birthdateDay -> integer representing day
+- showFormButton
+- removeCardButton
+- editCardButton

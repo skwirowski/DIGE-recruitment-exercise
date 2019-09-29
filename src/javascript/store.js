@@ -1,40 +1,65 @@
 import {
   getBirthdayMonthInteger,
-  getBirthdayDayInteger
-} from './helperFunctions';
+  getBirthdayDayInteger,
+  readInputPictureFileBase64,
+  removeIndexOfPropertyFromArray,
+} from './utils/helper-functions';
 
+// eslint-disable-next-line import/no-mutable-exports
 export let usersDataStore = [];
 
-export function prepareUserTextData(userForm) {
-  const birthdateMonth = getBirthdayMonthInteger(userForm.birthdate.value);
-  const birthdateDay = getBirthdayDayInteger(userForm.birthdate.value);
+export function prepareFormDataExceptImageFile(formDataObject) {
+  const { name, birthdate, email, phone } = formDataObject;
+  const birthdateMonth = getBirthdayMonthInteger(birthdate.value);
+  const birthdateDay = getBirthdayDayInteger(birthdate.value);
+
   return {
     id: Date.now(),
-    name: userForm.name.value,
-    birthdate: userForm.birthdate.value,
+    name: name.value,
+    birthdate: birthdate.value,
     birthdateDay,
     birthdateMonth,
-    email: userForm.email.value,
-    phone: userForm.phone.value
+    email: email.value,
+    phone: phone.value,
   };
 }
 
-export function createCalendarInitialData(fullBirthDate) {
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const birthdayMonth = getBirthdayMonthInteger(fullBirthDate);
-
-  return {
-    currentYear,
-    birthdayMonth
-  };
+export function prepareFormImageFileData(file) {
+  if (file) {
+    const formImageData = {};
+    readInputPictureFileBase64(file).then(value => {
+      formImageData.picture = value;
+    });
+    return formImageData;
+  }
+  return null;
 }
+
+// export function createCalendarInitialData(formDataObject) {
+//   const { birthdateMonth, birthdateDay } = formDataObject;
+//   const today = new Date();
+//   const currentYear = today.getFullYear();
+
+//   return {
+//     currentYear,
+//     birthdayMonth: birthdateMonth,
+//     birthday: birthdateDay,
+//   };
+// }
 
 function saveToLocalStorage() {
-  const listToObject = { data: usersDataStore };
-  const userDataString = JSON.stringify(listToObject);
+  let message = '';
+  try {
+    const listToObject = { data: usersDataStore };
+    const userDataString = JSON.stringify(listToObject);
 
-  localStorage.setItem('userDataList', userDataString);
+    localStorage.setItem('userDataList', userDataString);
+    message = 'Local storage saving works fine';
+  } catch (event) {
+    message = 'Local storage saving is not working. Probably exceeded ¯|_(ツ)_/¯';
+  } finally {
+    console.log(message);
+  }
 }
 
 export function loadFromLocalStorage() {
@@ -50,14 +75,15 @@ export function loadFromLocalStorage() {
   usersDataStore = parsedLocalStorageData.data;
 }
 
-export function addUserData(userData) {
+export function addFormData(userData) {
   usersDataStore.push(userData);
+  console.log('localstorage data', usersDataStore);
 
   saveToLocalStorage();
 }
 
-export function removeUserData(removedDataId) {
-  usersDataStore = usersDataStore.filter(item => item.id !== removedDataId);
+export function removeFormData(id) {
+  usersDataStore = removeIndexOfPropertyFromArray(usersDataStore, 'id', Number(id));
 
   saveToLocalStorage();
 }

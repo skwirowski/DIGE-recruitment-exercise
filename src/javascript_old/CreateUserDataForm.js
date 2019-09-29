@@ -1,9 +1,8 @@
 import { getCurrentDate, clearRegions } from './helperFunctions';
 
 export default function showUserDataForm() {
-  const addUserDataFormRegion = document.querySelector(
-    '#user-data-form-region'
-  );
+  const addUserDataFormRegion = document.querySelector('#user-data-form-region');
+
   clearRegions();
 
   const userDataFormTemplate = /* html */ `

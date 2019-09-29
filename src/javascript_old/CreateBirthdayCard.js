@@ -19,13 +19,22 @@ export default function showUserBirthdayCard(birthdayData) {
               <p>${email}</p>
               <p>${phone}</p>
             </div>
-            <button
-              class="birthday-card__remove-button"
-              type='button'
-              value=${id}
-            >
-              Remove
-            </button>
+            <div>
+              <button
+                class="birthday-card__remove-button"
+                type='button'
+                value=${id}
+              >
+                Remove
+              </button>
+              <button
+                class="birthday-card__edit-button"
+                type='button'
+                value=${id}
+              >
+                Edit
+              </button>
+            </div>
           </div>
         `;
       })

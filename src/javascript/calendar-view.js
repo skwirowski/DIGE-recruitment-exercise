@@ -89,7 +89,7 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
         }
       }
       calendarBody.appendChild(row);
-      showCardsView(getBirthdayMonthObjects, year, month);
+      showCardsView(getBirthdayMonthObjects, month);
     }
   }
   createCalendarBody();

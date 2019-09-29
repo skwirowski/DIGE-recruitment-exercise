@@ -2,7 +2,7 @@
 import showCalendarView from './calendar-view';
 import { removeFormData } from './store';
 
-export default function showCardsView(arrayOfDataObjects, year, month) {
+export default function showCardsView(arrayOfDataObjects, month, day) {
   const cardsRegion = document.querySelector('#cards-region');
 
   const createCardTemplate = () =>
@@ -53,7 +53,7 @@ export default function showCardsView(arrayOfDataObjects, year, month) {
     removeCardButton.forEach(item => {
       item.addEventListener('click', () => {
         removeFormData(item.value);
-        showCalendarView(year, month);
+        showCalendarView(day, month);
       });
     });
 

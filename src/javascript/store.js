@@ -35,18 +35,6 @@ export function prepareFormImageFileData(file) {
   return null;
 }
 
-// export function createCalendarInitialData(formDataObject) {
-//   const { birthdateMonth, birthdateDay } = formDataObject;
-//   const today = new Date();
-//   const currentYear = today.getFullYear();
-
-//   return {
-//     currentYear,
-//     birthdayMonth: birthdateMonth,
-//     birthday: birthdateDay,
-//   };
-// }
-
 function saveToLocalStorage() {
   let message = '';
   try {

@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import showCalendarView from './calendar-view';
 import { getCurrentDate, clearRegions } from './utils/helper-functions';
-import { prepareFormImageFileData, prepareFormDataExceptImageFile, createCalendarInitialData } from './store';
+import { prepareFormImageFileData, prepareFormDataExceptImageFile } from './store';
 
 export default function showFormView(callback) {
   let userFormData = {};
@@ -112,7 +112,6 @@ export default function showFormView(callback) {
 
       console.log('updated user form data', userFormData);
       callback(userFormData);
-      // const { currentYear, birthdayMonth } = createCalendarInitialData(userFormData);
       clearRegions();
       showCalendarView(birthdateDay, birthdateMonth);
     });

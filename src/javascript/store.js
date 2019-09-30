@@ -3,6 +3,7 @@ import {
   getBirthdayDayInteger,
   readInputPictureFileBase64,
   removeIndexOfPropertyFromArray,
+  findIndexOfPropertyInArray,
 } from './utils/helper-functions';
 
 // eslint-disable-next-line import/no-mutable-exports
@@ -73,5 +74,11 @@ export function addFormData(userData) {
 export function removeFormData(id) {
   usersDataStore = removeIndexOfPropertyFromArray(usersDataStore, 'id', Number(id));
 
+  saveToLocalStorage();
+}
+
+export function editFormData(userData, id) {
+  const editedDataObjectIndex = findIndexOfPropertyInArray(usersDataStore, 'id', Number(id));
+  usersDataStore[editedDataObjectIndex] = userData;
   saveToLocalStorage();
 }

@@ -1,6 +1,8 @@
 /* eslint-disable import/no-cycle */
+import showFormView from './form-view';
 import showCalendarView from './calendar-view';
-import { removeFormData } from './store';
+import { removeFormData, editFormData } from './store';
+import { clearRegions } from './utils/helper-functions';
 
 export default function showCardsView(arrayOfDataObjects, month, day) {
   const cardsRegion = document.querySelector('#cards-region');
@@ -57,11 +59,12 @@ export default function showCardsView(arrayOfDataObjects, month, day) {
       });
     });
 
-    // editCardButton.forEach(item => {
-    //   item.addEventListener('click', () => {
-
-    //   });
-    // });
+    editCardButton.forEach(item => {
+      item.addEventListener('click', () => {
+        clearRegions();
+        showFormView(editFormData, item.value);
+      });
+    });
   }
   attachEventListeners();
 }

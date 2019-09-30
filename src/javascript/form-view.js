@@ -3,7 +3,7 @@ import showCalendarView from './calendar-view';
 import { getCurrentDate, clearRegions } from './utils/helper-functions';
 import { prepareFormImageFileData, prepareFormDataExceptImageFile } from './store';
 
-export default function showFormView(callback) {
+export default function showFormView(callback, id) {
   let userFormData = {};
 
   const formRegion = document.querySelector('#form-region');
@@ -47,7 +47,7 @@ export default function showFormView(callback) {
           name="birthdate"
           max=${getCurrentDate()}
           required
-          value="2018-01-14"
+          value="2019-09-14"
         />
       </div>
 
@@ -111,7 +111,7 @@ export default function showFormView(callback) {
       const { birthdateMonth, birthdateDay } = userFormData;
 
       console.log('updated user form data', userFormData);
-      callback(userFormData);
+      callback(userFormData, id);
       clearRegions();
       showCalendarView(birthdateDay, birthdateMonth);
     });

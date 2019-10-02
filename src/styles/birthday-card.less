@@ -1,31 +1,112 @@
-.birthday-card {
+@import './settings.less';
+@import './resets.css';
+
+.cards {
   width: 100%;
-  display: flex;
-  margin-bottom: 15px;
+  font-family: @font-family;
+  color: @font-color-primary;
 
-  &__photo {
-    height: 100px;
-    width: 100px;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-  }
+  .birthday-card {
+    width: 100%;
+    background-color: fade(@color-current-birthday, 30%);
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    margin-bottom: 15px;
 
-  &__user-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100px;
-    margin-left: 10px;
-
-    h2,
-    h3,
-    p {
-      margin: 0;
+    &:nth-child(2n) {
+      background-color: fade(@color-birthday, 30%);
     }
-  }
 
-  &__remove-button {
-    align-self: center;
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &__photo {
+      height: 100px;
+      width: 100px;
+      min-width: 100px;
+      border-radius: 50%;
+      border: solid 4px @color-accent;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    &__user-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100px;
+      margin-left: 10px;
+
+      .user-info__email {
+        font-size: 12px;
+        word-break: break-all;
+      }
+    }
+
+    &__controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    &__button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      width: 40px;
+      text-transform: uppercase;
+      font-weight: @font-weight-bold;
+      color: @font-color-secondary;
+      background-color: white;
+      background-size: 65%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 50%;
+      border: solid 2px @color-primary;
+      margin-left: auto;
+      margin-right: auto;
+      cursor: pointer;
+
+      &--remove {
+        background-image: url('../images/icon-remove.svg');
+        margin-right: 30px;
+
+        &:active {
+          background-color: fade(@color-warning, 80%);
+          transition: background-color 250ms;
+        }
+      }
+
+      &--edit {
+        background-image: url('../images/icon-edit.svg');
+        margin-left: 30px;
+
+        &:active {
+          background-color: fade(@color-success, 80%);
+          transition: background-color 250ms;
+        }
+      }
+
+      &:focus-within {
+        outline: none;
+        box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+      }
+    }
+
+    &__remove-button {
+      align-self: center;
+    }
   }
 }

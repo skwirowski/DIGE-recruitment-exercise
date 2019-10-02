@@ -1,27 +1,97 @@
-.birthday-card {
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import 'resets.css';
+.cards {
   width: 100%;
-  display: flex;
+  font-family: 'Roboto', sans-serif;
+  color: #3a3a3a;
+}
+.cards .birthday-card {
+  width: 100%;
+  background-color: rgba(255, 64, 129, 0.3);
+  padding-top: 15px;
+  padding-right: 5px;
+  padding-bottom: 15px;
+  padding-left: 5px;
   margin-bottom: 15px;
 }
-.birthday-card__photo {
+.cards .birthday-card:nth-child(2n) {
+  background-color: rgba(128, 222, 234, 0.3);
+}
+.cards .birthday-card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cards .birthday-card__photo {
   height: 100px;
   width: 100px;
+  min-width: 100px;
+  border-radius: 50%;
+  border: solid 4px #80DEEA;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
-.birthday-card__user-info {
+.cards .birthday-card__user-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100px;
   margin-left: 10px;
 }
-.birthday-card__user-info h2,
-.birthday-card__user-info h3,
-.birthday-card__user-info p {
-  margin: 0;
+.cards .birthday-card__user-info .user-info__email {
+  font-size: 12px;
+  word-break: break-all;
 }
-.birthday-card__remove-button {
+.cards .birthday-card__controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+.cards .birthday-card__button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: white;
+  background-size: 65%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  border: solid 2px #00BCD4;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+.cards .birthday-card__button--remove {
+  background-image: url('../images/icon-remove.svg');
+  margin-right: 30px;
+}
+.cards .birthday-card__button--remove:active {
+  background-color: rgba(213, 0, 0, 0.8);
+  transition: background-color 250ms;
+}
+.cards .birthday-card__button--edit {
+  background-image: url('../images/icon-edit.svg');
+  margin-left: 30px;
+}
+.cards .birthday-card__button--edit:active {
+  background-color: rgba(0, 230, 118, 0.8);
+  transition: background-color 250ms;
+}
+.cards .birthday-card__button:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+}
+.cards .birthday-card__remove-button {
   align-self: center;
 }

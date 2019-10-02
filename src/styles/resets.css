@@ -1,0 +1,17 @@
+button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+h3 {
+  display: block;
+  font-size: 1.17em;
+  font-weight: normal;
+}

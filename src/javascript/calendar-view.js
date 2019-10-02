@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 import showFormView from './form-view';
 import showCardsView from './cards-view';
+import showModalView from './modal-view';
 import {
   getFirstDayOfMonth,
   getDaysInMonth,
@@ -16,13 +17,17 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
 
   const calendarTemplate = /* html */ `
     <div class="calendar__controls-wrapper">
-      <button id="previous-month"><< Previous</button>
-      <h3 id="calendar-heading"></h3>
-      <button id="next-month">Next >></button>
+      <button id="previous-month" class="calendar__navigation-button">
+        <span class="navigation-button__icon"></span>
+      </button>
+      <h3 id="calendar-heading" class="calendar__date-heading"></h3>
+      <button id="next-month" class="calendar__navigation-button">
+        <span class="navigation-button__icon navigation-button__icon--right"></span>
+      </button>
     </div>
-    <table>
-      <thead>
-        <tr>
+    <table class="calendar__table">
+      <thead class="calendar__table-header">
+        <tr class="calendar__table-header-row">
           <th>Sun</th>
           <th>Mon</th>
           <th>Tue</th>
@@ -32,10 +37,16 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
           <th>Sat</th>
         </tr>
       </thead>
-      <tbody id="calendar-body">
+      <tbody id="calendar-body" class="calendar__table-body">
       </tbody>
     </table>
-    <button id="show-form">Show form</button>
+    <div class="calendar__show-form">
+      <button id="show-form" class="calendar__show-form-button">
+        <span class="show-form-button__icon"></span>
+        Show form
+      </button>
+    </div>
+    
   `;
 
   calendarRegion.innerHTML = calendarTemplate;
@@ -76,10 +87,13 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
 
           // eslint-disable-next-line no-loop-func
           if (collectBirthdays.some(item => item === date)) {
-            cell.classList.add('birthday-color');
+            cell.classList.add('birthday');
+            cell.setAttribute('role', 'button');
+            cell.setAttribute('tabindex', 0);
+            cell.dataset.birthDay = date;
           }
           if (date === day) {
-            cell.className = 'current-birthday-color';
+            cell.classList.add('birthday__current');
           }
 
           cell.appendChild(cellText);
@@ -98,22 +112,37 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
     const previousMonthButton = document.querySelector('#previous-month');
     const nextMonthButton = document.querySelector('#next-month');
     const showFormButton = document.querySelector('#show-form');
+    const showModalButton = document.querySelectorAll('.birthday');
 
     previousMonthButton.addEventListener('click', () => {
       const currentYear = month === 0 ? year - 1 : year;
       const currentMonth = month === 0 ? 11 : month - 1;
 
-      showCalendarView(currentYear, currentMonth);
+      showCalendarView(undefined, currentMonth, currentYear);
     });
+
     nextMonthButton.addEventListener('click', () => {
       const currentYear = month === 11 ? year + 1 : year;
       const currentMonth = (month + 1) % 12;
 
-      showCalendarView(currentYear, currentMonth);
+      showCalendarView(undefined, currentMonth, currentYear);
     });
+
     showFormButton.addEventListener('click', () => {
       clearRegions();
       showFormView(addFormData);
+    });
+
+    showModalButton.forEach(item => {
+      const birthday = Number(item.dataset.birthDay);
+      item.addEventListener('click', () => {
+        showModalView(birthday, month, year);
+      });
+      item.addEventListener('keyup', event => {
+        if (event.keyCode === 13) {
+          showModalView(birthday, month, year);
+        }
+      });
     });
   }
   attachEventListeners();

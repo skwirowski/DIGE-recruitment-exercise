@@ -82,3 +82,29 @@ export function editFormData(userData, id) {
   usersDataStore[editedDataObjectIndex] = userData;
   saveToLocalStorage();
 }
+
+export function getEditedFormCurrentData(id) {
+  const editedDataObjectIndex = findIndexOfPropertyInArray(usersDataStore, 'id', Number(id));
+  const { id: identifier, name, birthdate, birthdateDay, birthdateMonth, email, phone, picture } = usersDataStore[
+    editedDataObjectIndex
+  ];
+
+  return {
+    identifier,
+    name,
+    birthdate,
+    birthdateDay,
+    birthdateMonth,
+    email,
+    phone,
+    picture,
+  };
+}
+
+export function setInitialFormInputsValues(form, userFormData) {
+  /* eslint-disable no-param-reassign */
+  form.elements[0].value = userFormData.name;
+  form.elements[2].value = userFormData.birthdate;
+  form.elements[3].value = userFormData.email;
+  form.elements[4].value = userFormData.phone;
+}

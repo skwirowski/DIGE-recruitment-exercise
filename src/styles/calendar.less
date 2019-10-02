@@ -1,15 +1,154 @@
-.calendar__controls-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+@import './settings.less';
+@import './resets.css';
 
-.birthday-color {
-  background-color: lightblue;
-  color: rgb(51, 51, 51);
-}
+.calendar {
+  width: 100%;
+  font-family: @font-family;
+  color: @font-color-primary;
 
-.current-birthday-color {
-  background-color: lightcoral;
-  color: rgb(51, 51, 51);
+  &__controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__date-heading {
+    font-size: 1.5em;
+    font-weight: @font-weight-bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  &__navigation-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+
+    &:active {
+      background-color: fade(@color-accent, 50%);
+      transition: background-color 250ms;
+    }
+
+    &:focus-within {
+      outline: none;
+      box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+    }
+
+    .navigation-button__icon {
+      display: block;
+      height: 20px;
+      width: 20px;
+      background-color: transparent;
+      background-image: url('../images/icon-previous-arrow.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      padding-right: 3px;
+
+      &--right {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-spacing: 0;
+    background-color: fade(@color-accent, 10%);
+
+    &-header {
+      background: @color-primary;
+
+      &-row {
+        th {
+          font-weight: @font-weight-bold;
+          color: @font-color-secondary;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    &-body {
+      tr {
+        td {
+          padding-top: 10px;
+          padding-right: 5px;
+          padding-bottom: 10px;
+          padding-left: 5px;
+        }
+      }
+
+      .birthday {
+        background-color: @color-birthday;
+        font-weight: @font-weight-bold;
+        cursor: pointer;
+
+        &:active {
+          background-color: darken(@color-birthday, 15%);
+          transition: background-color 250ms;
+        }
+
+        &:focus-within {
+          outline: none;
+          box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+        }
+
+        &__current {
+          background-color: @color-current-birthday;
+          color: @font-color-secondary;
+
+          &:active {
+            background-color: darken(@color-current-birthday, 15%);
+          }
+        }
+      }
+    }
+  }
+
+  &__show-form {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    &-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-transform: uppercase;
+      font-weight: @font-weight-bold;
+      color: @font-color-secondary;
+      background-color: @color-primary;
+      padding-top: 5px;
+      padding-right: 15px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      margin-left: auto;
+      margin-right: auto;
+      cursor: pointer;
+
+      &:active {
+        background-color: darken(@color-primary, 15%);
+        transition: background-color 250ms;
+      }
+
+      &:focus-within {
+        outline: none;
+        box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+      }
+
+      .show-form-button__icon {
+        display: block;
+        height: 40px;
+        width: 40px;
+        background-color: transparent;
+        background-image: url('../images/icon-show-form.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+  }
 }

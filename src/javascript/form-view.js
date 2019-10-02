@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-cycle
 import showCalendarView from './calendar-view';
 import { getCurrentDate, clearRegions } from './utils/helper-functions';
-import { prepareFormImageFileData, prepareFormDataExceptImageFile } from './store';
+import { prepareFormImageFileData, prepareFormDataExceptImageFile, setInitialFormInputsValues } from './store';
 
-export default function showFormView(callback, id) {
+export default function showFormView(callback, id, currentFormData) {
   let userFormData = {};
 
   const formRegion = document.querySelector('#form-region');
@@ -19,9 +19,9 @@ export default function showFormView(callback, id) {
           placeholder="Your name"
           required
           pattern="[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż]{1,}"
-          title="Name can contain only letters"
+          title="Name can consist of one word and only letters"
           aria-describedby="name-help"
-          value="Paweł"
+          value=""
         />
         <small id="name-help">Name can consist of one word and only letters e.g. Paweł</small>
       </div>
@@ -47,7 +47,7 @@ export default function showFormView(callback, id) {
           name="birthdate"
           max=${getCurrentDate()}
           required
-          value="2019-09-14"
+          value=""
         />
       </div>
 
@@ -57,9 +57,10 @@ export default function showFormView(callback, id) {
           type="email"
           id="email-input"
           name="email"
+          placeholder="Your email address"
           required
           aria-describedby="email-help"
-          value="pskwirowski@gmail.com"
+          value=""
         />
         <small id="email-help">Example of a valid e-mail address: pskwirowski@gmail.com</small>
       </div>
@@ -70,11 +71,12 @@ export default function showFormView(callback, id) {
           type="text"
           id="phone-input"
           name="phone"
+          placeholder="Your phone number"
           required
           pattern="[0-9]{9}"
           title="Valid phone number consists of 9 digits"
           aria-describedby="phone-help"
-          value="601647108"
+          value=""
         />
         <small id="phone-help">Valid phone number consists of 9 digits e.g. 601647108</small>
       </div>
@@ -86,8 +88,13 @@ export default function showFormView(callback, id) {
 
   formRegion.innerHTML = formTemplate;
 
+  const dataForm = document.querySelector('#data-form');
+
+  if (currentFormData) {
+    setInitialFormInputsValues(dataForm, currentFormData);
+  }
+
   function attachEventListeners() {
-    const dataForm = document.querySelector('#data-form');
     const pictureInput = dataForm.elements[1];
     const showCalendarButton = document.querySelector('#show-calendar');
 

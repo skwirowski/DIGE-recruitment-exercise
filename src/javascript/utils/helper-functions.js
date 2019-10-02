@@ -88,3 +88,11 @@ export function findIndexOfPropertyInArray(arrayOfObjects, objectKey, comparison
 export function removeIndexOfPropertyFromArray(arrayOfObjects, objectKey, comparisonValue) {
   return arrayOfObjects.filter(item => item[objectKey] !== comparisonValue);
 }
+
+export function getFormatedDateString(day, month, year) {
+  const prepareYear = `${year - 1}`;
+  const preparMonth = `${month > 9 ? month : `0${month}`}`;
+  const prepareDay = `${day > 9 ? day : `0${day}`}`;
+  const createDate = `${prepareYear}-${preparMonth}-${prepareDay}`;
+  return createDate;
+}

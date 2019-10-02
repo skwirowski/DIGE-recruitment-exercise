@@ -7,7 +7,8 @@
 }
 .cards .birthday-card {
   width: 100%;
-  background-color: rgba(255, 64, 129, 0.3);
+  background-color: rgba(0, 188, 212, 0.2);
+  box-sizing: border-box;
   padding-top: 15px;
   padding-right: 5px;
   padding-bottom: 15px;
@@ -15,13 +16,16 @@
   margin-bottom: 15px;
 }
 .cards .birthday-card:nth-child(2n) {
-  background-color: rgba(128, 222, 234, 0.3);
+  background-color: rgba(0, 151, 167, 0.2);
+}
+.cards .birthday-card:nth-child(3n) {
+  background-color: rgba(128, 222, 234, 0.2);
 }
 .cards .birthday-card__wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 300px;
+  max-width: 350px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -39,12 +43,51 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100px;
   margin-left: 10px;
+}
+.cards .birthday-card__user-info .user-info__name,
+.cards .birthday-card__user-info .user-info__birthdate,
+.cards .birthday-card__user-info .user-info__phone,
+.cards .birthday-card__user-info .user-info__email {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.cards .birthday-card__user-info .user-info__name .icon,
+.cards .birthday-card__user-info .user-info__birthdate .icon,
+.cards .birthday-card__user-info .user-info__phone .icon,
+.cards .birthday-card__user-info .user-info__email .icon {
+  display: block;
+  height: 20px;
+  width: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 5px;
+}
+.cards .birthday-card__user-info .user-info__name {
+  margin-bottom: 5px;
+}
+.cards .birthday-card__user-info .user-info__name--icon {
+  background-image: url('../images/icon-person.svg');
+}
+.cards .birthday-card__user-info .user-info__birthdate {
+  margin-bottom: 10px;
+}
+.cards .birthday-card__user-info .user-info__birthdate--icon {
+  background-image: url('../images/icon-birthday.svg');
+}
+.cards .birthday-card__user-info .user-info__phone {
+  margin-bottom: 10px;
+}
+.cards .birthday-card__user-info .user-info__phone--icon {
+  background-image: url('../images/icon-phone.svg');
 }
 .cards .birthday-card__user-info .user-info__email {
   font-size: 12px;
   word-break: break-all;
+}
+.cards .birthday-card__user-info .user-info__email--icon {
+  background-image: url('../images/icon-email.svg');
 }
 .cards .birthday-card__controls {
   display: flex;
@@ -54,44 +97,126 @@
   margin-top: 15px;
 }
 .cards .birthday-card__button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  width: 40px;
+  position: relative;
+  height: 50px;
+  width: 50px;
   text-transform: uppercase;
   font-weight: 700;
-  color: #FFFFFF;
-  background-color: white;
-  background-size: 65%;
+  background-size: 80%;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
   border: solid 2px #00BCD4;
   margin-left: auto;
   margin-right: auto;
+  transition: background-color 250ms;
   cursor: pointer;
 }
+.cards .birthday-card__button .button__content {
+  position: absolute;
+  color: #0097A7;
+  transition: color 250ms;
+}
 .cards .birthday-card__button--remove {
+  background-color: rgba(213, 0, 0, 0.5);
   background-image: url('../images/icon-remove.svg');
-  margin-right: 30px;
+  margin-right: 70px;
 }
 .cards .birthday-card__button--remove:active {
   background-color: rgba(213, 0, 0, 0.8);
   transition: background-color 250ms;
 }
+.cards .birthday-card__button--remove:active .button__content {
+  color: #00525b;
+  transition: color 250ms;
+}
+.cards .birthday-card__button--remove .button__content {
+  left: 55px;
+  top: 0px;
+}
 .cards .birthday-card__button--edit {
+  background-color: rgba(0, 230, 118, 0.5);
   background-image: url('../images/icon-edit.svg');
-  margin-left: 30px;
+  margin-left: 70px;
 }
 .cards .birthday-card__button--edit:active {
-  background-color: rgba(0, 230, 118, 0.8);
+  background-color: #00cd69;
   transition: background-color 250ms;
+}
+.cards .birthday-card__button--edit:active .button__content {
+  color: #00525b;
+  transition: color 250ms;
+}
+.cards .birthday-card__button--edit .button__content {
+  right: 55px;
+  bottom: 0px;
 }
 .cards .birthday-card__button:focus-within {
   outline: none;
   box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
 }
-.cards .birthday-card__remove-button {
-  align-self: center;
+@media (min-width: 768px) {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .cards .birthday-card {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+  }
+  .cards .birthday-card:nth-child(2n) {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  .cards .birthday-card__controls {
+    border-top: solid 3px rgba(0, 151, 167, 0.2);
+    padding-top: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .cards .birthday-card__button--remove:hover {
+    background-color: rgba(213, 0, 0, 0.65);
+    transition: background-color 250ms;
+  }
+  .cards .birthday-card__button--remove:hover .button__content {
+    color: #00808e;
+    transition: color 250ms;
+  }
+  .cards .birthday-card__button--remove:active {
+    background-color: rgba(213, 0, 0, 0.8);
+    transition: background-color 250ms;
+  }
+  .cards .birthday-card__button--remove:active .button__content {
+    color: #00525b;
+    transition: color 250ms;
+  }
+  .cards .birthday-card__button--edit:hover {
+    background-color: rgba(0, 230, 118, 0.8);
+    transition: background-color 250ms;
+  }
+  .cards .birthday-card__button--edit:hover .button__content {
+    color: #00808e;
+    transition: color 250ms;
+  }
+  .cards .birthday-card__button--edit:active {
+    background-color: #00cd69;
+    transition: background-color 250ms;
+  }
+  .cards .birthday-card__button--edit:active .button__content {
+    color: #00525b;
+    transition: color 250ms;
+  }
+}
+@media (min-width: 992px) {
+  .cards {
+    justify-content: space-between;
+  }
+  .cards .birthday-card {
+    width: calc(33.333333% - 10px);
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .cards .birthday-card:nth-child(2n) {
+    margin-left: 0;
+  }
 }

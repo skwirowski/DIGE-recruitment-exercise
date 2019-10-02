@@ -26,6 +26,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+    transition: background-color 250ms;
 
     &:active {
       background-color: fade(@color-accent, 50%);
@@ -148,6 +149,273 @@
         background-image: url('../images/icon-show-form.svg');
         background-size: contain;
         background-repeat: no-repeat;
+      }
+    }
+  }
+
+  &__toggle-birthdays-range {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    .toggle-birthdays-range__description {
+      text-align: center;
+
+      span {
+        color: @color-secondary;
+      }
+    }
+
+    .toggle-birthdays-range__button {
+      position: relative;
+      height: 50px;
+      width: 50px;
+      text-transform: uppercase;
+      font-weight: @font-weight-bold;
+      background-image: url('../images/icon-toggle.svg');
+      background-size: 80%;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 250ms;
+      cursor: pointer;
+
+      .button__content {
+        position: absolute;
+        color: @color-secondary;
+        transition: color 250ms;
+      }
+
+      &:active {
+        background-color: fade(@color-primary, 80%);
+        transition: background-color 250ms;
+
+        .button__content {
+          color: darken(@color-secondary, 15%);
+          transition: color 250ms;
+        }
+      }
+
+      .button__content {
+        left: 55px;
+        top: 16px;
+      }
+
+      &:focus-within {
+        outline: none;
+        box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+      }
+    }
+  }
+}
+
+@media @breakpoint-small {
+  .calendar {
+    &__table {
+      &-body {
+        tr {
+          td {
+            padding-top: 10px;
+            padding-right: 15px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+          }
+        }
+      }
+    }
+
+    &__toggle-birthdays-range {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .toggle-birthdays-range__description {
+        margin-right: 30px;
+      }
+
+      .toggle-birthdays-range__button {
+        margin-left: 0;
+        margin-right: 0;
+
+        .button__content {
+          position: absolute;
+          color: @color-secondary;
+          transition: color 250ms;
+        }
+
+        &:active {
+          background-color: fade(@color-primary, 80%);
+          transition: background-color 250ms;
+
+          .button__content {
+            color: darken(@color-secondary, 15%);
+            transition: color 250ms;
+          }
+        }
+
+        .button__content {
+          left: 55px;
+          top: 16px;
+        }
+
+        &:focus-within {
+          outline: none;
+          box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+        }
+      }
+    }
+  }
+}
+
+@media @breakpoint-medium {
+  .calendar {
+    &__table {
+      &-header {
+        &-row {
+          th {
+            padding-top: 20px;
+            padding-bottom: 20px;
+          }
+        }
+      }
+
+      &-body {
+        tr {
+          td {
+            padding-right: 30px;
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+
+    &__show-form {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media @breakpoint-large {
+  .calendar {
+    &__navigation-button {
+      &:hover {
+        background-color: fade(@color-accent, 20%);
+        transition: background-color 250ms;
+      }
+
+      &:active {
+        background-color: fade(@color-accent, 50%);
+        transition: background-color 250ms;
+      }
+
+      &:focus-within {
+        outline: none;
+        box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+      }
+    }
+
+    &__table {
+      &-body {
+        tr {
+          td {
+            padding-top: 20px;
+            padding-right: 40px;
+            padding-bottom: 20px;
+            padding-left: 40px;
+            transition: background-color 250ms;
+
+            &:hover {
+              background-color: fade(@color-accent, 20%);
+              transition: background-color 250ms;
+            }
+          }
+        }
+
+        .birthday {
+          background-color: @color-birthday;
+          font-weight: @font-weight-bold;
+          cursor: pointer;
+
+          &:hover {
+            background-color: darken(@color-birthday, 10%);
+          }
+
+          &:active {
+            background-color: darken(@color-birthday, 30%);
+          }
+
+          &:focus-within {
+            outline: none;
+            box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+          }
+
+          &__current {
+            background-color: @color-current-birthday;
+            color: @font-color-secondary;
+
+            &:hover {
+              background-color: darken(@color-current-birthday, 10%);
+            }
+
+            &:active {
+              background-color: darken(@color-current-birthday, 20%);
+            }
+          }
+        }
+      }
+    }
+
+    &__show-form {
+      margin-top: 45px;
+      margin-bottom: 45px;
+
+      &-button {
+        transition: background-color 250ms;
+
+        &:hover {
+          background-color: darken(@color-primary, 10%);
+          transition: background-color 250ms;
+        }
+
+        &:active {
+          background-color: darken(@color-primary, 20%);
+          transition: background-color 250ms;
+        }
+
+        &:focus-within {
+          outline: none;
+          box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+        }
+      }
+    }
+
+    &__toggle-birthdays-range {
+      .toggle-birthdays-range__button {
+        &:hover {
+          background-color: fade(@color-primary, 30%);
+          transition: background-color 250ms;
+
+          .button__content {
+            color: darken(@color-secondary, 5%);
+            transition: color 250ms;
+          }
+        }
+
+        &:active {
+          background-color: fade(@color-primary, 80%);
+          transition: background-color 250ms;
+
+          .button__content {
+            color: darken(@color-secondary, 15%);
+            transition: color 250ms;
+          }
+        }
       }
     }
   }

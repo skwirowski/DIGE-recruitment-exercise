@@ -1,6 +1,7 @@
 @import './forms.css';
 @import './calendar.css';
 @import './birthday-card.css';
+@import './settings.less';
 
 body {
   margin: 0;
@@ -8,9 +9,28 @@ body {
 }
 
 .main-container {
-  max-width: 576px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
   padding-right: 15px;
+
+  @media @breakpoint-small {
+    max-width: @bp-small;
+  }
+
+  @media @breakpoint-medium {
+    max-width: @bp-medium;
+  }
+
+  @media @breakpoint-large {
+    max-width: @bp-large;
+  }
+
+  @media @breakpoint-large {
+    max-width: @bp-large;
+  }
+
+  @media @breakpoint-extra-large {
+    max-width: @bp-extra-large;
+  }
 }

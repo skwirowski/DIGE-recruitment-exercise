@@ -46,7 +46,15 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
         Show form
       </button>
     </div>
-    
+    <div class="calendar__toggle-birthdays-range">
+      <h2 id="toggle-birthday-dates-description" class="toggle-birthdays-range__description">
+        <span>Current month</span> birthday dates
+      </h2>
+      <button id="toggle-birthday-dates-range" class="toggle-birthdays-range__button">
+        <span class="button__content">Toggle</span>
+      </button>
+    </div>
+
   `;
 
   calendarRegion.innerHTML = calendarTemplate;
@@ -58,15 +66,24 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
   }
   createCalendarHeading();
 
-  function createCalendarBody() {
-    const calendarBody = document.querySelector('#calendar-body');
-    const firstDayOfMonth = getFirstDayOfMonth(year, month);
-    const daysInMonth = getDaysInMonth(year, month);
-
+  function prepareCurrentMonthBirthdayDates() {
     const getBirthdayMonthObjects = filterPropertiesFromObjectsArray(usersDataStore, 'birthdateMonth', month);
     const collectBirthdays = collectObjectPropertiesInArray(getBirthdayMonthObjects, 'birthdateDay');
     console.log('birthday months', getBirthdayMonthObjects);
     console.log('birthday days', collectBirthdays);
+
+    return {
+      getBirthdayMonthObjects,
+      collectBirthdays,
+    };
+  }
+  const { getBirthdayMonthObjects, collectBirthdays } = prepareCurrentMonthBirthdayDates();
+  let areWholeYearBirthdayCardsDisplayed = false;
+
+  function createCalendarBody() {
+    const calendarBody = document.querySelector('#calendar-body');
+    const firstDayOfMonth = getFirstDayOfMonth(year, month);
+    const daysInMonth = getDaysInMonth(year, month);
 
     let date = 1;
 
@@ -113,6 +130,8 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
     const nextMonthButton = document.querySelector('#next-month');
     const showFormButton = document.querySelector('#show-form');
     const showModalButton = document.querySelectorAll('.birthday');
+    const toggleBirthdayDatesRangeButton = document.querySelector('#toggle-birthday-dates-range');
+    const toggleBirthdayDatesRangeDescription = document.querySelector('#toggle-birthday-dates-description');
 
     previousMonthButton.addEventListener('click', () => {
       const currentYear = month === 0 ? year - 1 : year;
@@ -143,6 +162,27 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
           showModalView(birthday, month, year);
         }
       });
+    });
+
+    toggleBirthdayDatesRangeButton.addEventListener('click', () => {
+      function toggleBirthdayCardsDisplayRange() {
+        if (areWholeYearBirthdayCardsDisplayed) {
+          showCardsView(getBirthdayMonthObjects, month);
+          areWholeYearBirthdayCardsDisplayed = !areWholeYearBirthdayCardsDisplayed;
+
+          toggleBirthdayDatesRangeDescription.innerHTML = /* html */ `
+            <span>Current month</span> birthday dates
+          `;
+        } else {
+          showCardsView(usersDataStore, month);
+          areWholeYearBirthdayCardsDisplayed = !areWholeYearBirthdayCardsDisplayed;
+
+          toggleBirthdayDatesRangeDescription.innerHTML = /* html */ `
+            <span>All</span> birthday dates
+          `;
+        }
+      }
+      toggleBirthdayCardsDisplayRange();
     });
   }
   attachEventListeners();

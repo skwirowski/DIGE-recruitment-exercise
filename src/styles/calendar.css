@@ -23,6 +23,7 @@
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  transition: background-color 250ms;
 }
 .calendar__navigation-button:active {
   background-color: rgba(128, 222, 234, 0.5);
@@ -123,4 +124,195 @@
   background-image: url('../images/icon-show-form.svg');
   background-size: contain;
   background-repeat: no-repeat;
+}
+.calendar__toggle-birthdays-range {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__description {
+  text-align: center;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__description span {
+  color: #0097A7;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-image: url('../images/icon-toggle.svg');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 250ms;
+  cursor: pointer;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button .button__content {
+  position: absolute;
+  color: #0097A7;
+  transition: color 250ms;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button:active {
+  background-color: rgba(0, 188, 212, 0.8);
+  transition: background-color 250ms;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button:active .button__content {
+  color: #00525b;
+  transition: color 250ms;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button .button__content {
+  left: 55px;
+  top: 16px;
+}
+.calendar__toggle-birthdays-range .toggle-birthdays-range__button:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+}
+@media (min-width: 576px) {
+  .calendar__table-body tr td {
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+  }
+  .calendar__toggle-birthdays-range {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__description {
+    margin-right: 30px;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button .button__content {
+    position: absolute;
+    color: #0097A7;
+    transition: color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:active {
+    background-color: rgba(0, 188, 212, 0.8);
+    transition: background-color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:active .button__content {
+    color: #00525b;
+    transition: color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button .button__content {
+    left: 55px;
+    top: 16px;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+  }
+}
+@media (min-width: 768px) {
+  .calendar__table-header-row th {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .calendar__table-body tr td {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .calendar__show-form {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 992px) {
+  .calendar__navigation-button:hover {
+    background-color: rgba(128, 222, 234, 0.2);
+    transition: background-color 250ms;
+  }
+  .calendar__navigation-button:active {
+    background-color: rgba(128, 222, 234, 0.5);
+    transition: background-color 250ms;
+  }
+  .calendar__navigation-button:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+  }
+  .calendar__table-body tr td {
+    padding-top: 20px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    transition: background-color 250ms;
+  }
+  .calendar__table-body tr td:hover {
+    background-color: rgba(128, 222, 234, 0.2);
+    transition: background-color 250ms;
+  }
+  .calendar__table-body .birthday {
+    background-color: #80DEEA;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .calendar__table-body .birthday:hover {
+    background-color: #54d3e3;
+  }
+  .calendar__table-body .birthday:active {
+    background-color: #1ea2b3;
+  }
+  .calendar__table-body .birthday:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+  }
+  .calendar__table-body .birthday__current {
+    background-color: #FF4081;
+    color: #FFFFFF;
+  }
+  .calendar__table-body .birthday__current:hover {
+    background-color: #ff0d5f;
+  }
+  .calendar__table-body .birthday__current:active {
+    background-color: #d9004a;
+  }
+  .calendar__show-form {
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+  .calendar__show-form-button {
+    transition: background-color 250ms;
+  }
+  .calendar__show-form-button:hover {
+    background-color: #008fa1;
+    transition: background-color 250ms;
+  }
+  .calendar__show-form-button:active {
+    background-color: #00626e;
+    transition: background-color 250ms;
+  }
+  .calendar__show-form-button:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem rgba(0, 96, 100, 0.5);
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:hover {
+    background-color: rgba(0, 188, 212, 0.3);
+    transition: background-color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:hover .button__content {
+    color: #00808e;
+    transition: color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:active {
+    background-color: rgba(0, 188, 212, 0.8);
+    transition: background-color 250ms;
+  }
+  .calendar__toggle-birthdays-range .toggle-birthdays-range__button:active .button__content {
+    color: #00525b;
+    transition: color 250ms;
+  }
 }

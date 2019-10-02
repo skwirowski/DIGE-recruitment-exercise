@@ -8,7 +8,8 @@
 
   .birthday-card {
     width: 100%;
-    background-color: fade(@color-current-birthday, 30%);
+    background-color: fade(@color-primary, 20%);
+    box-sizing: border-box;
     padding-top: 15px;
     padding-right: 5px;
     padding-bottom: 15px;
@@ -16,14 +17,18 @@
     margin-bottom: 15px;
 
     &:nth-child(2n) {
-      background-color: fade(@color-birthday, 30%);
+      background-color: fade(@color-secondary, 20%);
+    }
+
+    &:nth-child(3n) {
+      background-color: fade(@color-accent, 20%);
     }
 
     &__wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 300px;
+      max-width: 350px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -43,12 +48,57 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100px;
       margin-left: 10px;
+
+      .user-info__name,
+      .user-info__birthdate,
+      .user-info__phone,
+      .user-info__email {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        .icon {
+          display: block;
+          height: 20px;
+          width: 20px;
+          background-repeat: no-repeat;
+          background-size: contain;
+          margin-right: 5px;
+        }
+      }
+
+      .user-info__name {
+        margin-bottom: 5px;
+
+        &--icon {
+          background-image: url('../images/icon-person.svg');
+        }
+      }
+
+      .user-info__birthdate {
+        margin-bottom: 10px;
+
+        &--icon {
+          background-image: url('../images/icon-birthday.svg');
+        }
+      }
+
+      .user-info__phone {
+        margin-bottom: 10px;
+
+        &--icon {
+          background-image: url('../images/icon-phone.svg');
+        }
+      }
 
       .user-info__email {
         font-size: 12px;
         word-break: break-all;
+
+        &--icon {
+          background-image: url('../images/icon-email.svg');
+        }
       }
     }
 
@@ -61,41 +111,66 @@
     }
 
     &__button {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 40px;
-      width: 40px;
+      position: relative;
+      height: 50px;
+      width: 50px;
       text-transform: uppercase;
       font-weight: @font-weight-bold;
-      color: @font-color-secondary;
-      background-color: white;
-      background-size: 65%;
+      background-size: 80%;
       background-repeat: no-repeat;
       background-position: center;
       border-radius: 50%;
       border: solid 2px @color-primary;
       margin-left: auto;
       margin-right: auto;
+      transition: background-color 250ms;
       cursor: pointer;
 
+      .button__content {
+        position: absolute;
+        color: @color-secondary;
+        transition: color 250ms;
+      }
+
       &--remove {
+        background-color: fade(@color-warning, 50%);
         background-image: url('../images/icon-remove.svg');
-        margin-right: 30px;
+        margin-right: 70px;
 
         &:active {
           background-color: fade(@color-warning, 80%);
           transition: background-color 250ms;
+
+          .button__content {
+            color: darken(@color-secondary, 15%);
+            transition: color 250ms;
+          }
+        }
+
+        .button__content {
+          left: 55px;
+          top: 0px;
         }
       }
 
       &--edit {
+        background-color: fade(@color-success, 50%);
         background-image: url('../images/icon-edit.svg');
-        margin-left: 30px;
+        margin-left: 70px;
 
         &:active {
-          background-color: fade(@color-success, 80%);
+          background-color: darken(@color-success, 5%);
           transition: background-color 250ms;
+
+          .button__content {
+            color: darken(@color-secondary, 15%);
+            transition: color 250ms;
+          }
+        }
+
+        .button__content {
+          right: 55px;
+          bottom: 0px;
         }
       }
 
@@ -104,9 +179,94 @@
         box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
       }
     }
+  }
+}
 
-    &__remove-button {
-      align-self: center;
+@media @breakpoint-medium {
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    .birthday-card {
+      width: calc(~'50% - 10px');
+      margin-right: 10px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+        margin-left: 10px;
+      }
+
+      &__controls {
+        border-top: solid 3px fade(@color-secondary, 20%);
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+@media @breakpoint-large {
+  .cards {
+    .birthday-card {
+      &__button {
+        &--remove {
+          &:hover {
+            background-color: fade(@color-warning, 65%);
+            transition: background-color 250ms;
+
+            .button__content {
+              color: darken(@color-secondary, 5%);
+              transition: color 250ms;
+            }
+          }
+
+          &:active {
+            background-color: fade(@color-warning, 80%);
+            transition: background-color 250ms;
+
+            .button__content {
+              color: darken(@color-secondary, 15%);
+              transition: color 250ms;
+            }
+          }
+        }
+
+        &--edit {
+          &:hover {
+            background-color: fade(@color-success, 80%);
+            transition: background-color 250ms;
+
+            .button__content {
+              color: darken(@color-secondary, 5%);
+              transition: color 250ms;
+            }
+          }
+
+          &:active {
+            background-color: darken(@color-success, 5%);
+            transition: background-color 250ms;
+
+            .button__content {
+              color: darken(@color-secondary, 15%);
+              transition: color 250ms;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media @breakpoint-large {
+  .cards {
+    justify-content: space-between;
+    .birthday-card {
+      width: calc(~'33.333333% - 10px');
+      margin-right:0;
+      margin-left: 0;
+
+      &:nth-child(2n) {
+        margin-left: 0;
+      }
     }
   }
 }

@@ -1,6 +1,15 @@
 # Front-End Developer Task -  Astronomy Photo Of the Day based birthday calendar
 
-**A simple, Javascript based task checking your frontend development skills.** 
+To start application clone/download repo and open index.html file
+
+If you want to initiate development enviroment, you need to install npm packages:
+ - npm install
+
+After changes in javascript files webpack needs to rebuild output file so use script:
+- npm run build
+
+
+**A simple, Javascript based task checking your frontend development skills.**
 
 
 

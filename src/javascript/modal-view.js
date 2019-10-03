@@ -34,7 +34,12 @@ export default function showModalView(day, month, year) {
 
   function fetchApodData() {
     fetch(`${apodApiUrl}?api_key=${apodApiKey}&date=${getDateQuery}`)
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(response.status);
+      })
       .then(data => {
         const { title, explanation, url, date } = data;
 
@@ -50,7 +55,17 @@ export default function showModalView(day, month, year) {
         `;
 
         modalContentRegion.innerHTML = modalTemplate;
-        console.log(getDateQuery);
+      })
+      .catch(() => {
+        const errorTemplate = /* html */ `
+          <div class="modal-content-error">
+            <h1 class="modal-content-error__title">Oops!</h1>
+            <h2 class="modal-content-error__description">Something went wrong...</h2>
+            <span class="modal-content-error__image"></span>
+          </div>
+        `;
+
+        modalContentRegion.innerHTML = errorTemplate;
       });
   }
 

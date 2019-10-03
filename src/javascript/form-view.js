@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-cycle
 import showCalendarView from './calendar-view';
 import { getCurrentDate, clearRegions } from './utils/helper-functions';
-import { prepareFormImageFileData, prepareFormDataExceptImageFile, setInitialFormInputsValues } from './store';
+import { prepareFormImageFileData, prepareFormDataExceptImageFile, setInitialFormInputsValues, getRandomAvatarPictureUrl } from './store';
 
 export default function showFormView(callback, id, currentFormData) {
   let userFormData = {};
@@ -142,6 +142,14 @@ export default function showFormView(callback, id, currentFormData) {
       function addFormValuesToResultDataObject() {
         const formDataExceptImageFile = prepareFormDataExceptImageFile(dataForm);
         userFormData = { ...userFormData, ...formDataExceptImageFile };
+
+        function checkIfFallbackAvatarRequired() {
+          if (!userFormData.picture) {
+            const randomAvatarUrl = getRandomAvatarPictureUrl();
+            userFormData.picture = randomAvatarUrl;
+          }
+        }
+        checkIfFallbackAvatarRequired();
       }
       addFormValuesToResultDataObject();
 

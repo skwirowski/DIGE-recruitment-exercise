@@ -65,7 +65,7 @@ export function loadFromLocalStorage() {
 }
 
 export function addFormData(userData) {
-  usersDataStore.push(userData);
+  usersDataStore.unshift(userData);
   console.log('localstorage data', usersDataStore);
 
   saveToLocalStorage();
@@ -107,4 +107,10 @@ export function setInitialFormInputsValues(form, userFormData) {
   form.elements[2].value = userFormData.birthdate;
   form.elements[3].value = userFormData.email;
   form.elements[4].value = userFormData.phone;
+}
+
+export function getRandomAvatarPictureUrl() {
+  const staticPath = `src/images/avatars/${Math.round(Math.random() * 10)}.jpg`;
+
+  return staticPath;
 }

@@ -94,7 +94,7 @@ export function getFormatedDateString(day, month, year) {
   const currentMonth = today.getMonth();
   const currentDay = today.getDate();
   const checkDateValidity = () => {
-    if (currentMonth >= month && currentDay >= day) {
+    if (currentMonth >= month && currentDay > day) {
       return `${year}`;
     }
     return `${year - 1}`;

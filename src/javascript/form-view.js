@@ -9,12 +9,20 @@ export default function showFormView(callback, id, currentFormData) {
   const formRegion = document.querySelector('#form-region');
 
   const formTemplate = /* html */ `
-    <form id="data-form" class="user-data-form">
-      <div class="user-data-form__name">
-        <label for="name-input">Your name</label>
+    <div class="form__header">
+      <span class="header__icon"></span>
+      <h1 class="header__title">ASTRONOMY PICTURE OF THE DAY</h1>
+    </div>
+    <form id="data-form" class="form__data-form-container">
+      <div class="data-form__name">
+        <label for="name-input" class="form-label">
+          Your name
+          <span class="form-label__required">*</span>
+        </label>
         <input
           type="text"
           id="name-input"
+          class="form-input"
           name="name"
           placeholder="Your name"
           required
@@ -23,27 +31,34 @@ export default function showFormView(callback, id, currentFormData) {
           aria-describedby="name-help"
           value=""
         />
-        <small id="name-help">Name can consist of one word and only letters e.g. Paweł</small>
+        <small id="name-help" class="form-help">Name can consist of one word and only letters e.g. Paweł</small>
       </div>
 
-      <div class="user-data-form__picture">
-        <label for="picture-input">Upload your picture</label>
-        <input
-          type="file"
-          id="picture-input"
-          name="picture"
-          accept="image/*"
-          aria-describedby="picture-help"
-
-        />
-        <small id="picture-help">Picture size 300x300 pixels is the best fit</small>
+      <div class="data-form__picture">
+        <label for="picture-input" class="form-label">Upload your picture</label>
+        <div class="picture-input-wrapper">
+          <span class="picture-input__icon"></span>
+          <input
+            type="file"
+            id="picture-input"
+            class="form-input-file"
+            name="picture"
+            accept="image/*"
+            aria-describedby="picture-help"
+          />
+        </div>
+        <small id="picture-help" class="form-help">Picture size 120x120 pixels is the best fit</small>
       </div>
 
-      <div class="user-data-form__birthdate">
-        <label for="birthdate-input">Your date of birth</label>
+      <div class="data-form__birthdate">
+        <label for="birthdate-input" class="form-label">
+          Your date of birth
+          <span class="form-label__required">*</span>
+        </label>
         <input
           type="date"
           id="birthdate-input"
+          class="form-input"
           name="birthdate"
           max=${getCurrentDate()}
           required
@@ -51,25 +66,33 @@ export default function showFormView(callback, id, currentFormData) {
         />
       </div>
 
-      <div class="user-data-form__email">
-        <label for="email-input">Your e-mail address</label>
+      <div class="data-form__email">
+        <label for="email-input" class="form-label">
+          Your e-mail address
+          <span class="form-label__required">*</span>
+        </label>
         <input
           type="email"
           id="email-input"
+          class="form-input"
           name="email"
           placeholder="Your email address"
           required
           aria-describedby="email-help"
           value=""
         />
-        <small id="email-help">Example of a valid e-mail address: pskwirowski@gmail.com</small>
+        <small id="email-help" class="form-help">Example of a valid e-mail address: pskwirowski@gmail.com</small>
       </div>
 
-      <div class="user-data-form__phone">
-        <label for="phone-input">Your phone number</label>
+      <div class="data-form__phone">
+        <label for="phone-input" class="form-label">
+          Your phone number
+          <span class="form-label__required">*</span>
+        </label>
         <input
           type="text"
           id="phone-input"
+          class="form-input"
           name="phone"
           placeholder="Your phone number"
           required
@@ -78,11 +101,18 @@ export default function showFormView(callback, id, currentFormData) {
           aria-describedby="phone-help"
           value=""
         />
-        <small id="phone-help">Valid phone number consists of 9 digits e.g. 601647108</small>
+        <small id="phone-help" class="form-help">Valid phone number consists of 9 digits e.g. 601647108</small>
       </div>
-
-      <button type="submit">Submit</button>
-      <button id="show-calendar">Show calendar</button>
+      <div class="data-form__controls">
+        <button type="submit" class="button__submit-form">
+          <span class="button__submit-form-icon"></span>
+          Submit
+        </button>
+        <button id="show-calendar" class="button__show-calendar">
+          <span class="button__show-calendar-icon"></span>
+          Show calendar
+        </button>
+      </div>
     </form>
   `;
 

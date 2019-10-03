@@ -1,0 +1,226 @@
+@import './settings.less';
+@import './resets.css';
+
+.modal {
+  font-family: @font-family;
+  color: @font-color-primary;
+
+  &__background {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #000000;
+    background-color: fade(#000000, 40%);
+  }
+
+  &__container {
+    width: 90%;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    margin-top: 5%;
+    margin-right: auto;
+    margin-bottom: 15%;
+    margin-left: auto;
+    box-shadow:
+      0 4px 10px 0 rgba(0, 0, 0, 0.3),
+      0 4px 20px 0 rgba(0, 0, 0, 0.3);
+
+    &-top-strip {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 30px;
+      background-color: @color-secondary;
+      overflow-y: hidden;
+
+      .close-modal-button {
+        font-size: 50px;
+        color: @font-color-secondary;
+        transition: color 250ms;
+        cursor: pointer;
+
+        &:active {
+          color: darken(@color-focus, 0%);
+          transition: color 250ms;
+        }
+
+        &:focus-within {
+          outline: none;
+          box-shadow: 0px 0px 10px 0px fade(@color-accent, 80%);
+          transition: box-shadow 500ms;
+        }
+      }
+    }
+
+    .modal-content-region {
+      .modal-content {
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        &__title {
+          padding-right: 15px;
+          padding-left: 15px;
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        &__picture {
+          display: block;
+          width: 100%;
+
+          &-date {
+            display: block;
+            color: fade(@font-color-primary, 80%);
+            text-align: right;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-top: 5px;
+          }
+        }
+
+        &__description {
+          text-align: justify;
+          line-height: 1.5;
+          padding-right: 15px;
+          padding-left: 15px;
+          margin-top: 15px;
+        }
+      }
+
+      .modal-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+
+        &__inner {
+          display: inline-block;
+          position: relative;
+          width: 64px;
+          height: 64px;
+
+          div {
+            display: inline-block;
+            position: absolute;
+            left: 6px;
+            width: 13px;
+            background: @color-primary;
+            animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+
+            &:nth-child(1) {
+              left: 6px;
+              animation-delay: -0.24s;
+            }
+
+            &:nth-child(2) {
+              left: 26px;
+              animation-delay: -0.12s;
+            }
+
+            &:nth-child(3) {
+              left: 45px;
+              animation-delay: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media @breakpoint-small {
+  .modal {
+    &__container {
+      .modal-content-region {
+        .modal-content {
+          &__title {
+            padding-right: 20px;
+            padding-left: 20px;
+          }
+
+          &__description {
+            padding-right: 20px;
+            padding-left: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media @breakpoint-medium {
+  .modal {
+    &__container {
+      .modal-content-region {
+        .modal-content {
+          &__title {
+            padding-right: 25px;
+            padding-left: 25px;
+          }
+
+          &__description {
+            line-height: 1.8;
+            padding-right: 25px;
+            padding-left: 25px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media @breakpoint-large {
+  .modal {
+    &__container {
+      &-top-strip {
+        height: 40px;
+
+        .close-modal-button {
+          margin-right: 10px;
+
+          &:hover {
+            color: fade(@color-focus, 40%);
+            transition: color 250ms;
+          }
+
+          &:active {
+            color: @color-focus;
+            transition: color 250ms;
+          }
+        }
+      }
+
+      .modal-content-region {
+        .modal-content {
+          &__title {
+            padding-right: 30px;
+            padding-left: 30px;
+          }
+
+          &__description {
+            line-height: 2;
+            padding-right: 30px;
+            padding-left: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes loader {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+
+  50%,
+  100% {
+    top: 19px;
+    height: 26px;
+  }
+}

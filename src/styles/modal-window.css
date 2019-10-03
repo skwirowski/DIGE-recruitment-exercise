@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import 'resets.css';
+.modal {
+  font-family: 'Roboto', sans-serif;
+  color: #3a3a3a;
+}
+.modal__background {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal__container {
+  width: 90%;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  margin-top: 5%;
+  margin-right: auto;
+  margin-bottom: 15%;
+  margin-left: auto;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3), 0 4px 20px 0 rgba(0, 0, 0, 0.3);
+}
+.modal__container-top-strip {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 30px;
+  background-color: #0097A7;
+  overflow-y: hidden;
+}
+.modal__container-top-strip .close-modal-button {
+  font-size: 50px;
+  color: #FFFFFF;
+  transition: color 250ms;
+  cursor: pointer;
+}
+.modal__container-top-strip .close-modal-button:active {
+  color: #006064;
+  transition: color 250ms;
+}
+.modal__container-top-strip .close-modal-button:focus-within {
+  outline: none;
+  box-shadow: 0px 0px 10px 0px rgba(128, 222, 234, 0.8);
+  transition: box-shadow 500ms;
+}
+.modal__container .modal-content-region .modal-content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.modal__container .modal-content-region .modal-content__title {
+  padding-right: 15px;
+  padding-left: 15px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.modal__container .modal-content-region .modal-content__picture {
+  display: block;
+  width: 100%;
+}
+.modal__container .modal-content-region .modal-content__picture-date {
+  display: block;
+  color: rgba(58, 58, 58, 0.8);
+  text-align: right;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 5px;
+}
+.modal__container .modal-content-region .modal-content__description {
+  text-align: justify;
+  line-height: 1.5;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 15px;
+}
+.modal__container .modal-content-region .modal-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+.modal__container .modal-content-region .modal-loader__inner {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.modal__container .modal-content-region .modal-loader__inner div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: #00BCD4;
+  animation: loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.modal__container .modal-content-region .modal-loader__inner div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.modal__container .modal-content-region .modal-loader__inner div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.modal__container .modal-content-region .modal-loader__inner div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@media (min-width: 576px) {
+  .modal__container .modal-content-region .modal-content__title {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .modal__container .modal-content-region .modal-content__description {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .modal__container .modal-content-region .modal-content__title {
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+  .modal__container .modal-content-region .modal-content__description {
+    line-height: 1.8;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+}
+@media (min-width: 992px) {
+  .modal__container-top-strip {
+    height: 40px;
+  }
+  .modal__container-top-strip .close-modal-button {
+    margin-right: 10px;
+  }
+  .modal__container-top-strip .close-modal-button:hover {
+    color: rgba(0, 96, 100, 0.4);
+    transition: color 250ms;
+  }
+  .modal__container-top-strip .close-modal-button:active {
+    color: #006064;
+    transition: color 250ms;
+  }
+  .modal__container .modal-content-region .modal-content__title {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  .modal__container .modal-content-region .modal-content__description {
+    line-height: 2;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+}
+@keyframes loader {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%,
+  100% {
+    top: 19px;
+    height: 26px;
+  }
+}

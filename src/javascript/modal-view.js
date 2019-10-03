@@ -7,13 +7,23 @@ export default function showModalView(day, month, year) {
   const getDateQuery = getFormatedDateString(day, month, year);
 
   const modalContainerTemplate = /* html */ `
-    <div class="modal-container">
-      <div id="modal-content-region"></div>
-      <button id="close-modal">X</button>
+  <div class="modal__background">
+    <div class="modal__container">
+      <div class="modal__container-top-strip">
+        <button id="close-modal" class="close-modal-button">&times;</button>
+      </div>
+      <div id="modal-content-region" class="modal-content-region"></div>
     </div>
+  </div>
   `;
   const loaderTemplate = /* html */ `
-    <div>Loading ...</div>
+    <div class="modal-loader">
+      <div class="modal-loader__inner">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
   `;
 
   modalRegion.innerHTML = modalContainerTemplate;
@@ -26,17 +36,21 @@ export default function showModalView(day, month, year) {
     fetch(`${apodApiUrl}?api_key=${apodApiKey}&date=${getDateQuery}`)
       .then(response => response.json())
       .then(data => {
-        const { title, explanation, url } = data;
+        const { title, explanation, url, date } = data;
 
         const modalTemplate = /* html */ `
-          <div class="modal-container">
-            <h2>${title}</h2>
-            <img src=${url} alt=${title} />
-            <p>${explanation}</p>
+          <div class="modal-content">
+            <h2 class="modal-content__title">${title}</h2>
+            <img src=${url} alt=${title} class="modal-content__picture" />
+            <small class="modal-content__picture-date">
+              Date ${date}
+            </small>
+            <p class="modal-content__description">${explanation}</p>
           </div>
         `;
 
         modalContentRegion.innerHTML = modalTemplate;
+        console.log(getDateQuery);
       });
   }
 

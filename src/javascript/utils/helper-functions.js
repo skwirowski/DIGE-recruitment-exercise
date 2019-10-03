@@ -90,8 +90,18 @@ export function removeIndexOfPropertyFromArray(arrayOfObjects, objectKey, compar
 }
 
 export function getFormatedDateString(day, month, year) {
-  const prepareYear = `${year - 1}`;
-  const preparMonth = `${month > 9 ? month : `0${month}`}`;
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
+  const checkDateValidity = () => {
+    if (currentMonth >= month && currentDay >= day) {
+      return `${year}`;
+    }
+    return `${year - 1}`;
+  };
+
+  const prepareYear = checkDateValidity();
+  const preparMonth = `${month > 8 ? month + 1 : `0${month + 1}`}`;
   const prepareDay = `${day > 9 ? day : `0${day}`}`;
   const createDate = `${prepareYear}-${preparMonth}-${prepareDay}`;
   return createDate;

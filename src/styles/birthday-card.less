@@ -176,7 +176,8 @@
 
       &:focus-within {
         outline: none;
-        box-shadow: 0 0 0 0.1rem fade(@color-focus, 50%);
+        box-shadow: 0px 0px 10px 0px fade(@color-focus, 70%);
+        transition: box-shadow 500ms;
       }
     }
   }
@@ -256,12 +257,13 @@
   }
 }
 
-@media @breakpoint-large {
+@media @breakpoint-extra-large {
   .cards {
     justify-content: space-between;
+
     .birthday-card {
       width: calc(~'33.333333% - 10px');
-      margin-right:0;
+      margin-right: 0;
       margin-left: 0;
 
       &:nth-child(2n) {

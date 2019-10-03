@@ -69,8 +69,6 @@ export default function showCalendarView(day, month = new Date().getMonth(), yea
   function prepareCurrentMonthBirthdayDates() {
     const getBirthdayMonthObjects = filterPropertiesFromObjectsArray(usersDataStore, 'birthdateMonth', month);
     const collectBirthdays = collectObjectPropertiesInArray(getBirthdayMonthObjects, 'birthdateDay');
-    console.log('birthday months', getBirthdayMonthObjects);
-    console.log('birthday days', collectBirthdays);
 
     return {
       getBirthdayMonthObjects,

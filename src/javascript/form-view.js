@@ -1,7 +1,12 @@
 // eslint-disable-next-line import/no-cycle
 import showCalendarView from './calendar-view';
 import { getCurrentDate, clearRegions } from './utils/helper-functions';
-import { prepareFormImageFileData, prepareFormDataExceptImageFile, setInitialFormInputsValues, getRandomAvatarPictureUrl } from './store';
+import {
+  prepareFormImageFileData,
+  prepareFormDataExceptImageFile,
+  setInitialFormInputsValues,
+  getRandomAvatarPictureUrl,
+} from './store';
 
 export default function showFormView(callback, id, currentFormData) {
   let userFormData = {};
@@ -131,7 +136,6 @@ export default function showFormView(callback, id, currentFormData) {
     pictureInput.addEventListener('change', () => {
       function addFormImageFileToResultDataObject() {
         userFormData = prepareFormImageFileData(pictureInput.files[0]);
-        console.log('picture base64 hash', userFormData);
       }
       addFormImageFileToResultDataObject();
     });
@@ -155,7 +159,6 @@ export default function showFormView(callback, id, currentFormData) {
 
       const { birthdateMonth, birthdateDay } = userFormData;
 
-      console.log('updated user form data', userFormData);
       callback(userFormData, id);
       clearRegions();
       showCalendarView(birthdateDay, birthdateMonth);

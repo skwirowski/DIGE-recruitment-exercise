@@ -47,6 +47,7 @@ function saveToLocalStorage() {
   } catch (event) {
     message = 'Local storage saving is not working. Probably exceeded ¯|_(ツ)_/¯';
   } finally {
+    // eslint-disable-next-line no-console
     console.log(message);
   }
 }
@@ -66,7 +67,6 @@ export function loadFromLocalStorage() {
 
 export function addFormData(userData) {
   usersDataStore.unshift(userData);
-  console.log('localstorage data', usersDataStore);
 
   saveToLocalStorage();
 }
